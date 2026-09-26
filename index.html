@@ -1250,8 +1250,8 @@ function circHint(b,fi,x,z){
   circClear();
   const parts=[];
   const ents=circEntr.filter(o=>o.b===b);
-  const ent=ents.sort((p,q)=>Math.hypot(p.e.x-x,p.e.z-z)-Math.hypot(q.e.x-x,q.e.z-z))[0];
-  if(ent){ parts.push(`Entrada más cercana: ${ent.e.kind==='P'?'entrada principal':ent.e.n.toLowerCase()}`); pulse(ent.sp,1.4); }
+  const ent=ents.sort((p,q)=>(p.e.kind==='P'?0:1)-(q.e.kind==='P'?0:1)||Math.hypot(p.e.x-x,p.e.z-z)-Math.hypot(q.e.x-x,q.e.z-z))[0];
+  if(ent){ parts.push(`Entra por: ${ent.e.kind==='P'?'la entrada principal':ent.e.n.toLowerCase()}`); pulse(ent.sp,1.4); }
   if(fi!==b.base){
     const same=circRecs.filter(o=>o.b===b && o.r.fi===fi);
     const near=(c)=>same.filter(o=>c.includes(o.r.c)).sort((p,q)=>Math.hypot(p.r.x-x,p.r.z-z)-Math.hypot(q.r.x-x,q.r.z-z))[0];
@@ -1603,7 +1603,7 @@ function openRoom(code,title,ev){ if(isMobile()) startGuide(code,title,ev); else
 /* ---- ruta hasta el aula ---- */
 function routeFor(b,fi,x,z){
   const d=(ax,az)=>Math.hypot(ax-x,az-z);
-  const ents=circEntr.filter(o=>o.b===b).sort((p,q)=>d(p.e.x,p.e.z)-d(q.e.x,q.e.z));
+  const ents=circEntr.filter(o=>o.b===b).sort((p,q)=>(p.e.kind==='P'?0:1)-(q.e.kind==='P'?0:1)||d(p.e.x,p.e.z)-d(q.e.x,q.e.z));
   const ent=ents[0]||null;
   let st=null, lf=null;
   if(fi!==b.base){
