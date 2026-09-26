@@ -3,12 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Sube tu horario .ics de Unizar y la maqueta 3D del Campus Río Ebro te marca el aula de cada clase.">
-<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}*,*::before,*::after{box-sizing:border-box}html,body{height:100%}body{margin:0;font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<meta name="description" content="Sube tu horario .ics de Unizar y te llevo al aula: entrada, escalera y aula en la maqueta 3D del Campus Río Ebro (EINA).">
+<meta name="theme-color" content="#0B6E6A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mi Aula EINA">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}*,*::before,*::after{box-sizing:border-box}html,body{height:100%}body{margin:0;font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;background:#E7EAE6}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Mi Aula EINA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+</head>
+<body>
 <style>
 :root{
   --bg:#E7EAE6;
@@ -247,10 +257,128 @@ details.groups[open] summary span::after{content:" ▴"}
 .rlabel .hint::before{content:"›";position:absolute;left:0;font-weight:700}
 .rlabel .hint:first-of-type{margin-top:4px;padding-top:5px;border-top:1px solid color-mix(in srgb,var(--accent-ink) 30%,transparent)}
 .rlabel .hint:first-of-type::before{top:5px}
-</style>
-</head>
-<body>
 
+/* ================= móvil ================= */
+.mhome,.mtop,.fstrip,.guide,.sheet-h{display:none}
+@media (min-width:721px){ .mhome,.mtop,.fstrip,.guide,.sheet-h{display:none!important} }
+
+@media (max-width:720px){
+  :root{--tap:48px}
+  body{-webkit-tap-highlight-color:transparent}
+  /* ---- inicio ---- */
+  .m-home .mhome{display:grid}
+  .mhome{position:absolute;inset:0;z-index:30;background:var(--bg);overflow-y:auto;overscroll-behavior:contain;
+    padding:14px 16px 24px;gap:14px;align-content:start}
+  .mh-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .mh-brand .eyebrow{display:block;margin-bottom:3px}
+  .mh-brand b{font:700 26px/1 var(--f-disp);letter-spacing:.01em}
+  .mh-brand b span{color:var(--accent)}
+  .mh-map{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel-solid);font:600 14px/1 var(--f-disp);letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
+  .mh-map svg{width:18px;height:18px}
+  .mh-src{font-size:13px;line-height:1.45;color:var(--ink-2)}
+  .mh-src .link,.mh-src label.link{font-size:13px;cursor:pointer}
+  .pill.warn{background:#F2C14E;border-color:#F2C14E;color:#2A2000}
+  .mh-card{border-radius:18px;padding:18px 18px 16px;background:var(--accent);color:var(--accent-ink);display:grid;gap:8px;box-shadow:0 10px 30px color-mix(in srgb,var(--accent) 30%,transparent)}
+  .hc-k{font:600 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+  .hc-when{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .hc-when b{font:600 40px/1 var(--f-mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .hc-when span{font:600 15px/1.2 var(--f-body)}
+  .hc-t{font:700 26px/1.08 var(--f-disp);text-wrap:balance}
+  .hc-meta{display:flex;align-items:center;font-size:13.5px;opacity:.9}
+  .hc-meta .tg{background:color-mix(in srgb,var(--accent-ink) 14%,transparent);border-color:color-mix(in srgb,var(--accent-ink) 30%,transparent);color:inherit}
+  .hc-room{display:grid;gap:2px;margin-top:4px;padding:11px 13px;border-radius:12px;background:color-mix(in srgb,var(--accent-ink) 12%,transparent)}
+  .hc-room b{font:700 20px/1.1 var(--f-disp);letter-spacing:.02em}
+  .hc-room span{font-size:14px;opacity:.92}
+  .hc-actions{display:flex;margin-top:6px}
+  .hc-go{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;border:0;border-radius:14px;background:var(--accent-ink);color:var(--accent);font:700 18px/1 var(--f-disp);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+  .hc-go::after{content:"→";font-family:var(--f-body)}
+  label.hc-go::after{content:""}
+  .mh-card .muted{color:inherit;opacity:.85}
+  .mh-today{display:grid;gap:8px}
+  .mh-today:empty{display:none}
+  .mh-today h2,.mh-search label{margin:4px 0 0;font:600 13px/1 var(--f-disp);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+  .hrow{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;min-height:60px;text-align:left;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--panel-solid);color:var(--ink)}
+  .hrow .tm{font:600 16px/1 var(--f-mono);font-variant-numeric:tabular-nums}
+  .hrow .bd b{display:block;font:600 16px/1.15 var(--f-disp)}
+  .hrow .bd small{display:block;margin-top:3px;font-size:13px;color:var(--ink-2)}
+  .hrow .chev{font-size:24px;color:var(--accent);line-height:1}
+  .hrow:disabled{opacity:.6}
+  .mh-search{display:grid;gap:8px}
+  .mh-search input{width:100%;min-height:50px;font:500 16px var(--f-body);padding:0 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel-solid);color:var(--ink)}
+  .mh-search input:focus{outline:2px solid var(--accent);outline-offset:1px}
+  #hqres{display:grid;gap:8px}
+  #hqres .hrow{grid-template-columns:1fr auto}
+  .mh-links{display:grid;gap:8px}
+  .mh-links button,.mh-links label{display:flex;align-items:center;gap:10px;min-height:52px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:var(--btn);color:var(--ink);font:600 15px/1.1 var(--f-body);text-align:left;cursor:pointer}
+  .mh-links svg{width:20px;height:20px;color:var(--accent);flex:none}
+  .mh-foot{margin:6px 0 0;font-size:11.5px;line-height:1.45;color:var(--ink-2)}
+
+  /* ---- mapa: barra superior, tira de plantas, brújula ---- */
+  .m-map .mtop,.m-guide .mtop{display:flex}
+  .mtop{position:absolute;left:0;right:0;top:0;z-index:12;align-items:center;gap:10px;padding:10px 12px 10px;pointer-events:none}
+  .mtop>*{pointer-events:auto}
+  #mBack{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px 0 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:var(--shadow);font:600 15px/1 var(--f-body);color:var(--ink)}
+  #mBack span{font-size:22px;line-height:1;margin-top:-2px}
+  .m-map .fstrip{display:flex}
+  .fstrip{position:absolute;right:12px;top:66px;z-index:11;flex-direction:column;gap:6px;padding:6px;border-radius:14px;background:var(--panel);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:var(--shadow);max-height:calc(100% - 200px);overflow-y:auto}
+  .fstrip button{width:46px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--panel-solid);font:600 15px/1 var(--f-mono);color:var(--ink)}
+  .fstrip .fs-b{font-family:var(--f-disp);font-size:14px;letter-spacing:.04em}
+  .fstrip .fs-b.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .fstrip .fs-f.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+  .fstrip .fs-x{font-size:16px;color:var(--ink-2)}
+  .compass{top:66px!important;left:12px!important;right:auto!important;bottom:auto!important;width:42px!important;height:42px!important}
+  .compass svg{width:32px!important;height:32px!important}
+  .m-home .compass,.m-home .fstrip{display:none}
+  #floors,.explode{display:none!important}
+  #toast{top:66px!important;bottom:auto!important;z-index:40}
+  #ctip{top:66px;z-index:13}
+  .rlabel{padding:6px 10px}
+  .rlabel b{font-size:15px}
+  .rlabel small,.rlabel .hint{display:none!important}
+  .elabel b{font-size:11.5px}
+
+  /* ---- hoja inferior ---- */
+  .side{left:0!important;right:0!important;top:auto!important;bottom:0!important;width:auto!important;max-height:none!important;border-radius:18px 18px 0 0!important;z-index:14;will-change:transform;display:flex;flex-direction:column;padding-bottom:0!important}
+  .m-home .side,.m-guide .side{visibility:hidden}
+  .side .grab{display:none!important}
+  .sheet-h{display:grid;gap:3px;padding:8px 18px 12px;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;flex:none}
+  .sheet-h::before{content:"";justify-self:center;width:44px;height:5px;border-radius:3px;background:var(--line);margin-bottom:8px}
+  .sheet-h b{font:700 18px/1.1 var(--f-disp)}
+  .sheet-h span{font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .side-scroll{flex:1;min-height:0;padding:0 16px 20px!important;overscroll-behavior:contain}
+  .side-scroll>div:first-child,#next,.side .bar,#reset{display:none!important}
+  .ev{min-height:58px;padding:10px 12px}
+  .ev .bd b{font-size:15.5px}
+  .ev .bd small{font-size:13px}
+  .wnav button{min-width:40px;height:38px;font-size:14px}
+  .chip span{padding:8px 12px 8px 7px;font-size:14px}
+  .search input{min-height:48px;font-size:16px}
+  .hit{padding:11px 12px}
+  .drop{padding:14px}
+  .lg span{padding:8px 12px 8px 7px;font-size:13.5px}
+
+  /* ---- guía «Llévame» ---- */
+  .m-guide .guide{display:grid}
+  .guide{position:absolute;left:0;right:0;bottom:0;z-index:15;gap:6px;padding:14px 16px 14px;border-radius:18px 18px 0 0;background:var(--panel-solid);border-top:1px solid var(--line);box-shadow:0 -8px 30px rgba(0,0,0,.14)}
+  .g-top{display:flex;align-items:center;gap:10px}
+  #gStep{font:600 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+  #gDots{display:flex;gap:5px;flex:1}
+  #gDots i{width:22px;height:5px;border-radius:3px;background:var(--line)}
+  #gDots i.done{background:color-mix(in srgb,var(--accent) 45%,var(--line))}
+  #gDots i.on{background:var(--accent)}
+  #gClose{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--btn);font-size:18px;line-height:1;color:var(--ink-2)}
+  #gK{font:600 12.5px/1.2 var(--f-body);letter-spacing:.02em;color:var(--accent);margin-top:2px}
+  #gT{font:700 25px/1.08 var(--f-disp);text-wrap:balance}
+  #gS{font-size:14.5px;line-height:1.4;color:var(--ink-2)}
+  .g-nav{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:8px}
+  .g-nav button{min-height:52px;border-radius:14px;font:700 16px/1 var(--f-disp);letter-spacing:.05em;text-transform:uppercase}
+  #gPrev{border:1px solid var(--line);background:var(--btn);color:var(--ink)}
+  #gPrev:disabled{opacity:.4}
+  #gNext{border:0;background:var(--accent);color:var(--accent-ink)}
+  #gNext.done{background:var(--ink);color:var(--bg)}
+  .labels-hide-mobile{display:none}
+}
+</style>
 
 <div id="app">
   <canvas id="c" tabindex="0" aria-label="Maqueta 3D del Campus Río Ebro"></canvas>
@@ -258,7 +386,41 @@ details.groups[open] summary span::after{content:" ▴"}
   <div id="ctip" role="status" hidden></div>
   <div class="loading" id="loading">Cargando planos…</div>
 
+  <section class="mhome" id="home" aria-label="Tu próxima clase">
+    <header class="mh-top">
+      <div class="mh-brand"><span class="eyebrow">EINA · Campus Río Ebro</span><b>Mi aula <span>EINA</span></b></div>
+      <button type="button" class="mh-map" data-act="campus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5V4l-6 2.5L9 4Zm0 0v13m6-10.5v13"/></svg>Mapa</button>
+    </header>
+    <div class="mh-src" id="hmSrc"></div>
+    <article class="mh-card" id="hmNext" aria-live="polite"><div class="hc-k">Cargando tu horario…</div></article>
+    <div class="mh-today" id="hmToday"></div>
+    <div class="mh-search">
+      <label for="hq">¿Buscas otra aula?</label>
+      <input type="search" id="hq" placeholder="Aula 24, Lab 0.01, Salón de actos…" autocomplete="off" enterkeyhint="search">
+      <div id="hqres"></div>
+    </div>
+    <nav class="mh-links" aria-label="Más opciones">
+      <button type="button" data-act="week"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4m8-4v4"/></svg>Mi semana y grupos</button>
+      <label for="ics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 15V4m0 0-4 4m4-4 4 4M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg>Subir mi horario (.ics)</label>
+      <button type="button" data-act="campus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 20h18M5 20V9l7-4 7 4v11M9 20v-5h6v5"/></svg>Ver el campus en 3D</button>
+      <button type="button" id="hmInstall" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M12 7v7m0 0-3-3m3 3 3-3"/></svg>Instalar en el móvil</button>
+    </nav>
+    <p class="mh-foot">Tu horario se lee en este móvil y no se envía a ningún sitio. Aulas y planos: visor IDEUZ (Universidad de Zaragoza). Comprueba siempre el horario oficial.</p>
+  </section>
+
+  <div class="mtop" id="mtop"><button type="button" id="mBack" aria-label="Volver al inicio"><span aria-hidden="true">‹</span>Inicio</button></div>
+  <nav class="fstrip" id="fstrip" aria-label="Edificios y plantas"></nav>
+
+  <section class="guide" id="guide" hidden aria-live="polite">
+    <div class="g-top"><span id="gStep"></span><div id="gDots"></div><button type="button" id="gClose" aria-label="Cerrar la guía y explorar el mapa">✕</button></div>
+    <div id="gK"></div>
+    <div id="gT"></div>
+    <div id="gS"></div>
+    <div class="g-nav"><button type="button" id="gPrev">Atrás</button><button type="button" id="gNext">Siguiente</button></div>
+  </section>
+
   <aside class="panel side" id="side" aria-label="Tu horario">
+    <div class="sheet-h" id="sheetHead" role="button" tabindex="0" aria-label="Abrir o cerrar Mi semana"><b>Mi semana y grupos</b><span>Arrastra hacia arriba para ver tus clases, grupos y el buscador</span></div>
     <button class="grab" id="grab" type="button" aria-label="Mostrar u ocultar el panel"><span></span></button>
     <div class="side-scroll">
       <div>
@@ -599,7 +761,8 @@ function texFrom(src){
 /* ---------- renderer / scene ---------- */
 const canvas = document.getElementById('c');
 const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+const LOWP = matchMedia('(pointer:coarse)').matches || innerWidth<=720;
+renderer.setPixelRatio(Math.min(devicePixelRatio, LOWP?1.75:2));
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 const scene = new THREE.Scene();
@@ -614,7 +777,7 @@ const hemi = new THREE.HemisphereLight(0xffffff, 0xb5b1a5, .66); scene.add(hemi)
 const sun = new THREE.DirectionalLight(0xffffff, .7);
 sun.position.set(-160, 300, 190); sun.target.position.set(-30,0,0);
 sun.castShadow = true;
-sun.shadow.mapSize.set(4096,4096);
+sun.shadow.mapSize.set(LOWP?2048:4096, LOWP?2048:4096);
 Object.assign(sun.shadow.camera,{left:-380,right:380,top:260,bottom:-260,near:20,far:1000});
 sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.5;
 scene.add(sun); scene.add(sun.target);
@@ -915,7 +1078,7 @@ function renderUI(){
   seg.querySelectorAll('.bbtn').forEach(x=>x.setAttribute('aria-pressed',String(!!S.b&&S.b.id===x.dataset.b)));
   buildings.forEach(b=>{ b.labelEl.classList.toggle('active',S.b===b); b.labelEl.classList.toggle('dim',!!S.b&&S.b!==b); });
   labels.forEach(l=>{ if(l.ctx) l.el.style.opacity=S.b?0:1; });
-  const b=S.b; floorsEl.hidden=!b; if(!b) return;
+  const b=S.b; floorsEl.hidden=!b; if(typeof renderStrip==='function' && window.__mobileReady) renderStrip(); if(!b) return;
   const total=b.floorObjs.reduce((s,L)=>s+L.area,0);
   document.getElementById('fname').textContent=b.name;
   document.getElementById('fmeta').textContent=`${b.floors.length} niveles · ${b.floors[0]} a ${b.floors[b.floors.length-1]} · huella ≈ ${b.w} × ${b.d} m · ≈ ${fmtArea(Math.round(total/100)*100)} construidos`;
@@ -958,6 +1121,7 @@ canvas.addEventListener('pointerup',e=>{
   if(!down) return; const moved=Math.hypot(e.clientX-down.x,e.clientY-down.y); down=null;
   if(moved>6) return;
   if(circPick(e)) return;
+  if(window.__mobileReady && UI.mode==='guide') return;
   const hit=pick(e); if(!hit) return;
   const L=hit.object.userData.layer;
   if(S.b!==L.b) selectBuilding(L.b.id);
@@ -1157,7 +1321,7 @@ function codeFrom(text){
   const m=/CRE\.?\s*(\d{4})\.([0-9A-Z]{2})\.([0-9A-Z]{3})/i.exec(text||'');
   return m ? `${m[1]}.${m[2].toUpperCase()}.${m[3].toUpperCase()}` : null;
 }
-function goToRoom(code, title){
+function goToRoom(code, title, opts={}){
   const info=roomInfo(code);
   if(!info || info.outside || info.fi<0){ toast(info&&info.outside?'Esa sala está en otro edificio, fuera de la maqueta.':'No encuentro esa sala en la maqueta.'); return; }
   const b=info.b;
@@ -1186,8 +1350,7 @@ function goToRoom(code, title){
   labels.push(roomLabel);
   const y=F.y0+offOf(info.fi,tFinal());
   const target=new THREE.Vector3(x,y+1,z);
-  flyTo(fitPos(target, w?26:.5*Math.hypot(F.bbox.x1-F.bbox.x0,F.bbox.z1-F.bbox.z0)*.6, dirFromCamera(1.0)), target, 1.4);
-  if(matchMedia('(max-width:720px)').matches){ sheet.classList.add('peek'); setTimeout(resize,320); }
+  if(!opts.noFly) flyTo(fitPos(target, w?26:.5*Math.hypot(F.bbox.x1-F.bbox.x0,F.bbox.z1-F.bbox.z0)*.6, dirFromCamera(isMobile()?1.15:1.0)), target, 1.4);
 }
 let toastT=0;
 function toast(msg){ const t=$('toast'); t.textContent=msg; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,3800); }
@@ -1293,6 +1456,7 @@ function roomText(e){
   return e.loc ? e.loc.replace(/\s*\(CRE.*\)$/,'') : 'Sin aula asignada';
 }
 
+let weekEvents=[];
 function renderSchedule(){
   const evs=visibleEvents(), now=Date.now();
   // origen
@@ -1322,23 +1486,28 @@ function renderSchedule(){
   // semana
   if(H.week==null){
     const ref=cur?cur.s:(evs.length?evs[evs.length-1].s:now);
-    H.week = weekStart(evs.some(e=>weekStart(e.s)===weekStart(now))?now:ref);
+    const wkend=((new Date(localDayKey(now)).getUTCDay()+6)%7)>=5;
+    H.week = weekStart(wkend&&cur ? cur.s : (evs.some(e=>weekStart(e.s)===weekStart(now))?now:ref));
   }
   const w0=H.week, w1=w0+7*86400000;
   $('wlabel').textContent=`${fDM.format(w0+43200000)} – ${fDM.format(w0+4*86400000+43200000)}`;
   const wk=evs.filter(e=>{ const k=evDayKey(e); return k>=w0 && k<w1; });
   const days=new Map(); wk.forEach(e=>{ const k=evDayKey(e); if(!days.has(k)) days.set(k,[]); days.get(k).push(e); });
   const todayK=localDayKey(now);
+  weekEvents=wk;
   $('wlist').innerHTML = wk.length ? [...days.entries()].map(([k,list])=>`<section class="day${k===todayK?' today':''}"><h3>${cap(fDay.format(list[0].s))}${k===todayK?' <em>hoy</em>':''}</h3>${
-      list.map(e=>{ const [tg,tl]=typeTag(e.type); const past=e.e<now; return `<button type="button" class="ev${past?' past':''}${e===cur?' cur':''}" ${e.room?`data-room="${e.room}"`:'disabled'} data-title="${esc(e.name)}">
+      list.map(e=>{ const [tg,tl]=typeTag(e.type); const past=e.e<now; return `<button type="button" class="ev${past?' past':''}${e===cur?' cur':''}" ${e.room?`data-room="${e.room}" data-ev="${wk.indexOf(e)}"`:'disabled'} data-title="${esc(e.name)}">
         <span class="tm">${fTime.format(e.s)}<small>${fTime.format(e.e)}</small></span>
         <span class="bd"><b>${esc(e.name)}</b><small><span class="tg" title="${esc(tl)}">${tg}</span>${e.group?esc(e.group)+' · ':''}${esc(roomText(e))}</small></span></button>`; }).join('')
     }</section>`).join('') : `<p class="muted">${H.groups.size||!H.events.length?'No hay clases esta semana.':'Marca tus grupos arriba.'}</p>`;
+  const nWeek=wk.length;
+  const sh=document.querySelector('#sheetHead span'); if(sh) sh.textContent = H.events.length ? `${nWeek} clases esta semana · grupos, buscador y subir horario` : 'Sube tu horario para ver tus clases';
+  if(window.__mobileReady) renderHome();
 }
 
 // eventos de interfaz del horario
 $('side').addEventListener('click',e=>{
-  const b=e.target.closest('[data-room]'); if(b && !b.disabled){ goToRoom(b.dataset.room,b.dataset.title); }
+  const b=e.target.closest('[data-room]'); if(b && !b.disabled){ const ev=b.dataset.ev!==undefined?weekEvents[+b.dataset.ev]:null; openRoom(b.dataset.room,b.dataset.title,ev); }
 });
 $('glist').addEventListener('change',e=>{
   const c=e.target.closest('input[type=checkbox]'); if(!c) return;
@@ -1371,18 +1540,24 @@ addEventListener('drop',e=>{ if(e.dataTransfer?.files?.length){ e.preventDefault
 
 // --- buscador de aulas
 const norm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
-const ROOMLIST=Object.entries(ROOMS).map(([c,r])=>({c,r,key:norm(`${r[6]} ${c} cre.${c} ${BNAME[r[0]]}`)}));
-$('q').addEventListener('input',()=>{
-  const q=norm($('q').value.trim()); const out=$('qres');
-  if(q.length<2){ out.innerHTML=''; return; }
+const ROOMLIST=Object.entries(ROOMS).map(([c,r])=>({c,r,nm:norm(r[6]),key:norm(`${r[6]} ${c} cre.${c} ${BNAME[r[0]]}`)}));
+function searchRooms(qraw,limit){
+  const q=norm(qraw.trim()); if(q.length<2) return null;
   const terms=q.split(/\s+/);
-  const hits=ROOMLIST.filter(x=>terms.every(t=>x.key.includes(t))).sort((a,b)=>(a.r[7]-b.r[7])||a.r[6].localeCompare(b.r[6],undefined,{numeric:true})).slice(0,8);
+  const wb=t=>new RegExp('(^|[^a-z0-9])'+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'($|[^a-z0-9])');
+  const score=x=>{ if(x.nm===q) return 0; if(terms.every(t=>wb(t).test(x.nm))) return 1; if(terms.every(t=>x.nm.includes(t))) return 2; return 3; };
+  return ROOMLIST.filter(x=>terms.every(t=>x.key.includes(t))).map(x=>({x,s:score(x)}))
+    .sort((a,b)=>a.s-b.s||(a.x.r[7]-b.x.r[7])||a.x.r[6].localeCompare(b.x.r[6],undefined,{numeric:true})).slice(0,limit).map(o=>o.x);
+}
+$('q').addEventListener('input',()=>{
+  const out=$('qres'); const hits=searchRooms($('q').value,8);
+  if(!hits){ out.innerHTML=''; return; }
   out.innerHTML = hits.length ? hits.map(x=>`<button type="button" class="hit" data-room="${x.c}" data-title="${esc(x.r[6])}"><b>${esc(x.r[6])}</b><small>${BNAME[x.r[0]]} · planta ${x.c.split('.')[1]} · ${x.c}</small></button>`).join('') : '<p class="muted">Sin resultados.</p>';
 });
 
 // --- hoja inferior en móvil
 const sheet=$('side');
-$('grab').addEventListener('click',()=>{ sheet.classList.toggle('peek'); setTimeout(resize,320); });
+
 
 // arranque del horario
 const SAMPLE=document.getElementById('sample-data').textContent;
@@ -1393,6 +1568,252 @@ const SAMPLE=document.getElementById('sample-data').textContent;
 }
 setInterval(renderSchedule,60000);
 
+/* ---------- móvil: inicio, guía «Llévame», hoja inferior y tira de plantas ---------- */
+const appEl=$('app');
+const isMobile=()=>innerWidth<=720;
+const UI={mode:'home', guide:null, sheet:'peek'};
+const SHEET_PEEK=76;
+
+function setMode(m, push=true){
+  const prev=UI.mode; UI.mode=m;
+  ['home','map','guide'].forEach(k=>appEl.classList.toggle('m-'+k, m===k));
+  $('guide').hidden = m!=='guide';
+  if(m!=='guide') UI.guide=null;
+  if(m==='map') setSheet(UI.sheet==='full'?'full':UI.sheet, false);
+  if(push && isMobile() && prev==='home' && m!=='home'){ try{ history.pushState({miaula:m},''); }catch(e){} }
+  applyControls();
+  requestAnimationFrame(resize);
+}
+addEventListener('popstate',()=>{ if(isMobile() && UI.mode!=='home'){ endGuide(); setMode('home',false); } });
+function goHome(){ endGuide(); if(history.state&&history.state.miaula){ try{ history.back(); return; }catch(e){} } setMode('home',false); }
+
+function applyControls(){
+  if(isMobile()){
+    controls.touches={ONE:THREE.TOUCH.PAN, TWO:THREE.TOUCH.DOLLY_ROTATE};
+    controls.maxPolarAngle=1.05; controls.minDistance=10;
+  } else {
+    controls.touches={ONE:THREE.TOUCH.ROTATE, TWO:THREE.TOUCH.DOLLY_PAN};
+    controls.maxPolarAngle=Math.PI/2.1; controls.minDistance=15;
+  }
+}
+
+// abre un aula: en móvil con la guía paso a paso, en ordenador como antes
+function openRoom(code,title,ev){ if(isMobile()) startGuide(code,title,ev); else goToRoom(code,title); }
+
+/* ---- ruta hasta el aula ---- */
+function routeFor(b,fi,x,z){
+  const d=(ax,az)=>Math.hypot(ax-x,az-z);
+  const ents=circEntr.filter(o=>o.b===b).sort((p,q)=>d(p.e.x,p.e.z)-d(q.e.x,q.e.z));
+  const ent=ents[0]||null;
+  let st=null, lf=null;
+  if(fi!==b.base){
+    const same=circRecs.filter(o=>o.b===b && o.r.fi===fi);
+    const near=(c)=>same.filter(o=>c.includes(o.r.c)).sort((p,q)=>d(p.r.x,p.r.z)-d(q.r.x,q.r.z))[0]||null;
+    st=near(['E'])||near(['M']); lf=near(['A']);
+  }
+  return {ent,st,lf};
+}
+const lc=s=>s.charAt(0).toLowerCase()+s.slice(1);
+const sentence=s=>{ const t=String(s).toLowerCase(); return t.charAt(0).toUpperCase()+t.slice(1); };
+const floorPhrase=(code)=>({S1:'el sótano','00':'la planta baja','01':'la planta 1','02':'la planta 2','03':'la planta 3','04':'la planta 4','05':'la planta 5'}[code]||`la planta ${code}`);
+
+function startGuide(code,title,ev){
+  const info=roomInfo(code);
+  if(!info || info.outside || info.fi<0){ toast(info&&info.outside?'Esa sala está en otro edificio, fuera de la maqueta.':'No encuentro esa sala en la maqueta.'); return; }
+  goToRoom(code,title,{noFly:true});
+  const b=info.b, F=b.floorObjs[info.fi];
+  let x,z,w=0,h=0;
+  if(info.r){ x=info.r[2]; z=info.r[3]; w=info.r[4]; h=info.r[5]; } else { const q=F.bbox; x=(q.x0+q.x1)/2; z=(q.z0+q.z1)/2; }
+  const route=routeFor(b,info.fi,x,z);
+  const steps=[];
+  if(route.ent) steps.push('ent');
+  if(info.fi!==b.base && (route.st||route.lf)) steps.push('up');
+  steps.push('room');
+  const name=info.r?info.r[6]:`Sala ${info.room}`;
+  UI.guide={code,title:title||name,name,info,b,F,x,z,w,h,route,steps,i:0,ev:ev||null};
+  sheetTo('peek');
+  setMode('guide');
+  showStep(0);
+}
+function endGuide(){ if(UI.guide){ UI.guide=null; } }
+function showStep(i){
+  const G=UI.guide; if(!G) return;
+  G.i=Math.max(0,Math.min(G.steps.length-1,i));
+  const s=G.steps[G.i], b=G.b, info=G.info, n=G.steps.length;
+  const bn=BNAME[b.id];
+  // estado de la maqueta para el paso
+  const fi = s==='ent' ? b.base : info.fi;
+  if(S.k!==fi){ S.k=fi; refreshVis(); renderUI(); onExplode(); }
+  let target, radius, dir, K, T, Sub;
+  if(s==='ent'){
+    const e=G.route.ent.e;
+    target=new THREE.Vector3(e.x-e.dx*2,0,e.z-e.dz*2);
+    radius=24;
+    const el=1.0; dir=new THREE.Vector3(-e.dx*Math.cos(el),Math.sin(el),-e.dz*Math.cos(el)).normalize();
+    K='Entra al edificio';
+    T=e.kind==='P'?'Entrada principal':sentence(e.n);
+    Sub = `${bn}. ` + (info.fi===b.base ? 'Tu aula está en esta misma planta.' : `Tu aula está en ${floorPhrase(info.floor)}; la ves marcada en el mapa.`);
+  } else if(s==='up'){
+    const o=G.route.st||G.route.lf; const L=b.floorObjs[info.fi];
+    target=new THREE.Vector3(o.r.x,L.y0+offOf(info.fi,tFinal()),o.r.z);
+    radius=20; dir=dirFromCamera(1.12);
+    const verb=info.fi<b.base?'Baja':'Sube';
+    K=`${verb} a ${floorPhrase(info.floor)}`;
+    T = sentence(G.route.st ? G.route.st.r.n : G.route.lf.r.n);
+    Sub = G.route.st && G.route.lf ? `O en ascensor: ${lc(G.route.lf.r.n)}.` : (G.route.lf?'Con ascensor.':'Escalera marcada en naranja.');
+  } else {
+    const L=b.floorObjs[info.fi];
+    target=new THREE.Vector3(G.x,L.y0+1+offOf(info.fi,tFinal()),G.z);
+    radius=G.w?Math.max(G.w,G.h)*1.1+9:.5*Math.hypot(L.bbox.x1-L.bbox.x0,L.bbox.z1-L.bbox.z0)*.6;
+    dir=dirFromCamera(1.18);
+    K='Tu aula';
+    T=G.name;
+    const when = G.ev ? ` · ${fTime.format(G.ev.s)}–${fTime.format(G.ev.e)}` : '';
+    Sub=`${FNAME[info.floor]} · ${bn}${when}`;
+  }
+  flyTo(fitPos(target,radius,dir),target,1.2);
+  $('gK').textContent=K; $('gT').textContent=T; $('gS').textContent=Sub;
+  $('gStep').textContent=`Paso ${G.i+1} de ${n}`;
+  $('gDots').innerHTML=G.steps.map((_,j)=>`<i class="${j===G.i?'on':j<G.i?'done':''}"></i>`).join('');
+  $('gPrev').disabled=G.i===0;
+  const last=G.i===n-1;
+  $('gNext').textContent= last ? 'Ya estoy' : 'Siguiente';
+  $('gNext').classList.toggle('done',last);
+  requestAnimationFrame(resize);
+}
+$('gPrev').addEventListener('click',()=>showStep(UI.guide.i-1));
+$('gNext').addEventListener('click',()=>{ const G=UI.guide; if(!G) return; if(G.i<G.steps.length-1) showStep(G.i+1); else goHome(); });
+$('gClose').addEventListener('click',()=>{ setMode('map'); });
+
+/* ---- pantalla de inicio ---- */
+function relTime(ms,now){
+  const m=Math.round((ms-now)/60000);
+  if(m<=0) return 'ahora';
+  if(m<60) return `en ${m} min`;
+  const h=Math.floor(m/60), r=m%60;
+  if(h<12 && localDayKey(ms)===localDayKey(now)) return `en ${h} h${r?` ${r} min`:''}`;
+  const dd=(localDayKey(ms)-localDayKey(now))/86400000;
+  if(dd===1) return 'mañana';
+  if(dd<7) return `el ${fmt({weekday:'long'}).format(ms)}`;
+  return `el ${fDM.format(ms)}`;
+}
+function shortRoom(e){
+  if(e.room && ROOMS[e.room]){ const r=ROOMS[e.room]; return {room:r[6], where:`${BNAME[r[0]]} · ${FNAME[e.room.split('.')[1]]}`}; }
+  if(e.room){ const i=roomInfo(e.room); if(i&&!i.outside) return {room:`Sala ${i.room}`, where:`${BNAME[i.bid]} · ${FNAME[i.floor]||'planta '+i.floor}`}; }
+  return {room:e.loc?e.loc.replace(/\s*\(CRE.*\)$/,''):'Sin aula asignada', where:''};
+}
+let homeEvents=[];
+function renderHome(){
+  const evs=visibleEvents(), now=Date.now();
+  $('hmSrc').innerHTML = H.source==='sample'
+    ? `<span class="pill">Ejemplo</span> Horario de muestra: Informática 1º, grupos 411 y 4112. <label for="ics" class="link">Sube el tuyo</label>`
+    : (H.groups.size ? `<span class="pill ok">Tu horario</span> ${esc(H.label)}` : `<span class="pill warn">Falta un paso</span> Marca tus grupos en <button type="button" class="link" data-act="week">Mi semana y grupos</button>`);
+  const cur=evs.find(e=>e.e>now);
+  const card=$('hmNext');
+  homeEvents=[];
+  if(!cur){
+    card.innerHTML=`<div class="hc-k">Sin clases pendientes</div><div class="hc-t">${H.events.length?(H.groups.size?'No te quedan clases en este horario':'Elige tus grupos para ver tus clases'):'Sube tu horario para empezar'}</div>
+      <div class="hc-actions">${H.events.length&&!H.groups.size?`<button type="button" class="hc-go" data-act="week">Elegir mis grupos</button>`:`<label for="ics" class="hc-go">Subir mi horario (.ics)</label>`}</div>`;
+  } else {
+    const live=cur.s<=now; const [tg,tl]=typeTag(cur.type); const r=shortRoom(cur);
+    homeEvents.push(cur);
+    const left=Math.max(1,Math.round((cur.e-now)/60000));
+    card.innerHTML=`<div class="hc-k">${live?'Ahora mismo':'Tu próxima clase'}</div>
+      <div class="hc-when"><b>${fTime.format(cur.s)}</b><span>${live?`termina en ${left} min`:relTime(cur.s,now)}</span></div>
+      <div class="hc-t">${esc(cur.name)}</div>
+      <div class="hc-meta"><span class="tg" title="${esc(tl)}">${tg}</span>${esc(tl)}${cur.group?` · grupo ${esc(cur.group)}`:''}</div>
+      <div class="hc-room"><b>${esc(r.room)}</b><span>${esc(r.where)}</span></div>
+      <div class="hc-actions">${cur.room?`<button type="button" class="hc-go" data-ev="0">Llévame</button>`:`<span class="muted">Esta clase no tiene aula asignada.</span>`}</div>`;
+  }
+  // resto de hoy
+  const todayK=localDayKey(now);
+  const rest=evs.filter(e=>e!==cur && e.e>now && localDayKey(e.s)===(cur?localDayKey(cur.s):todayK)).slice(0,5);
+  const dayLabel = cur && localDayKey(cur.s)!==todayK ? cap(fDay.format(cur.s)) : 'Hoy';
+  $('hmToday').innerHTML = rest.length ? `<h2>Después · ${dayLabel.toLowerCase()==='hoy'?'hoy':dayLabel}</h2>`+rest.map(e=>{ homeEvents.push(e); const r=shortRoom(e); return `<button type="button" class="hrow" ${e.room?`data-ev="${homeEvents.length-1}"`:'disabled'}>
+      <span class="tm">${fTime.format(e.s)}</span><span class="bd"><b>${esc(e.name)}</b><small>${esc(r.room)}${r.where?' · '+esc(r.where):''}</small></span><span class="chev" aria-hidden="true">›</span></button>`; }).join('') : '';
+}
+$('home').addEventListener('click',e=>{
+  const t=e.target.closest('[data-ev],[data-act],[data-room]'); if(!t) return;
+  if(t.dataset.ev!==undefined){ const ev=homeEvents[+t.dataset.ev]; if(ev) startGuide(ev.room,ev.name,ev); return; }
+  if(t.dataset.room){ startGuide(t.dataset.room,t.dataset.title); return; }
+  const a=t.dataset.act;
+  if(a==='week'){ UI.sheet='full'; setMode('map'); sheetTo('full'); }
+  if(a==='campus'){ UI.sheet='peek'; setMode('map'); reset(); sheetTo('peek'); }
+});
+// buscador de inicio
+$('hq').addEventListener('input',()=>{
+  const out=$('hqres'); const hits=searchRooms($('hq').value,6);
+  if(!hits){ out.innerHTML=''; return; }
+  out.innerHTML = hits.length ? hits.map(x=>`<button type="button" class="hrow" data-room="${x.c}" data-title="${esc(x.r[6])}"><span class="bd"><b>${esc(x.r[6])}</b><small>${BNAME[x.r[0]]} · ${FNAME[x.c.split('.')[1]]}</small></span><span class="chev" aria-hidden="true">›</span></button>`).join('') : '<p class="muted">No encuentro esa aula. Prueba con «aula 24» o «lab 0.01».</p>';
+});
+$('mBack').addEventListener('click',goHome);
+
+/* ---- hoja inferior arrastrable ---- */
+function sheetVisible(state){ const H_=innerHeight; return state==='full'?Math.round(H_*.86):state==='half'?Math.round(H_*.5):SHEET_PEEK; }
+function sheetTo(state,anim=true){
+  UI.sheet=state;
+  const el=sheet; const full=Math.round(innerHeight*.86);
+  el.style.height=full+'px';
+  el.style.transition=anim?'transform .28s cubic-bezier(.2,.8,.2,1)':'none';
+  el.style.transform=`translateY(${full-sheetVisible(state)}px)`;
+  el.classList.toggle('open',state!=='peek');
+  $('grab').setAttribute('aria-expanded',String(state!=='peek'));
+  requestAnimationFrame(resize);
+}
+function setSheet(s,anim){ if(isMobile()) sheetTo(s,anim); }
+{
+  let y0=null, t0=0, start=0;
+  const hdr=$('sheetHead');
+  const onDown=e=>{ if(!isMobile()) return; y0=e.clientY; t0=performance.now(); const full=Math.round(innerHeight*.86); start=full-sheetVisible(UI.sheet); sheet.style.transition='none'; hdr.setPointerCapture(e.pointerId); };
+  const onMove=e=>{ if(y0==null) return; const full=Math.round(innerHeight*.86); const y=Math.max(0,Math.min(full-SHEET_PEEK,start+(e.clientY-y0))); sheet.style.transform=`translateY(${y}px)`; };
+  const onUp=e=>{
+    if(y0==null) return; const dy=e.clientY-y0, dt=performance.now()-t0; y0=null;
+    if(Math.abs(dy)<6){ sheetTo(UI.sheet==='peek'?'half':'peek'); return; }
+    const full=Math.round(innerHeight*.86); const cur=full-(start+dy); const v=dy/dt;
+    let s; if(v<-.5) s=UI.sheet==='peek'?'half':'full'; else if(v>.5) s=UI.sheet==='full'?'half':'peek';
+    else { const opts=['peek','half','full']; s=opts.sort((a,b)=>Math.abs(sheetVisible(a)-cur)-Math.abs(sheetVisible(b)-cur))[0]; }
+    sheetTo(s);
+  };
+  hdr.addEventListener('pointerdown',onDown); hdr.addEventListener('pointermove',onMove); hdr.addEventListener('pointerup',onUp); hdr.addEventListener('pointercancel',onUp);
+}
+
+/* ---- tira de plantas ---- */
+function renderStrip(){
+  const el=$('fstrip'); if(!el) return;
+  const b=S.b;
+  if(!b){ el.innerHTML=buildings.map(x=>`<button type="button" class="fs-b" data-b="${x.id}">${x.code}</button>`).join(''); el.dataset.state='bld'; return; }
+  el.dataset.state='floors';
+  el.innerHTML=`<button type="button" class="fs-b on" data-b="${b.id}" aria-label="${esc(b.name)}">${b.code}</button>`+
+    [...b.floorObjs].reverse().map(L=>`<button type="button" class="fs-f${S.k===L.k?' on':''}" data-k="${L.k}" aria-pressed="${S.k===L.k}" aria-label="${FNAME[L.code]}">${L.code}</button>`).join('')+
+    `<button type="button" class="fs-x" data-x="1" aria-label="Ver todo el campus">✕</button>`;
+}
+$('fstrip').addEventListener('click',e=>{
+  const t=e.target.closest('button'); if(!t) return;
+  if(UI.mode==='guide') setMode('map');
+  if(t.dataset.x){ reset(); return; }
+  if(t.dataset.k!==undefined){ selectFloor(+t.dataset.k); return; }
+  if(t.dataset.b){ if(S.b&&S.b.id===t.dataset.b&&S.k===null) return; selectBuilding(t.dataset.b); }
+});
+
+/* ---- instalar como app ---- */
+let installEvt=null;
+addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); installEvt=e; $('hmInstall').hidden=false; });
+$('hmInstall').addEventListener('click',async()=>{
+  if(installEvt){ installEvt.prompt(); try{ await installEvt.userChoice; }catch(e){} installEvt=null; $('hmInstall').hidden=true; return; }
+  toast('En iPhone: pulsa Compartir y luego «Añadir a pantalla de inicio».');
+});
+{
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  const hasManifest=!!document.querySelector('link[rel="manifest"]');
+  if(hasManifest && ios && !standalone) $('hmInstall').hidden=false;
+  if(hasManifest && 'serviceWorker' in navigator){ try{ navigator.serviceWorker.register('sw.js').catch(()=>{}); }catch(e){} }
+}
+setInterval(()=>{ if(UI.mode==='home') renderHome(); },30000);
+
+window.__mobileReady=true;
+$('sheetHead').addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); sheetTo(UI.sheet==='peek'?'half':'peek'); } });
+
 /* ---------- loop ---------- */
 const north=document.getElementById('north');
 let viewW=1, viewH=1;
@@ -1401,13 +1822,24 @@ function resize(){
   renderer.setSize(w,h,false); camera.aspect=w/h;
   const side=document.getElementById('side');
   const mobile=w<=720;
-  const dx = mobile ? 0 : Math.min(side.getBoundingClientRect().right, w*.45);
-  const dy = mobile ? Math.min(side.getBoundingClientRect().height, h*.62) : 0;
-  viewW=Math.max(200,w-dx); viewH=Math.max(200,h-dy);
-  camera.setViewOffset(w,h,-dx/2,dy/2,w,h);
+  let dx=0, dyB=0, dyT=0;
+  if(!mobile) dx=Math.min(side.getBoundingClientRect().right, w*.45);
+  else if(window.__mobileReady){
+    dyT = UI.mode==='home' ? 0 : ($('mtop').getBoundingClientRect().bottom||0);
+    dyB = UI.mode==='guide' ? $('guide').getBoundingClientRect().height : UI.mode==='map' ? sheetVisible(UI.sheet==='full'?'half':UI.sheet) : 0;
+    dyB=Math.min(dyB,h*.6);
+  }
+  viewW=Math.max(200,w-dx); viewH=Math.max(200,h-dyB-dyT);
+  if(mobile){ const fs=$('fstrip'); if(fs) fs.style.maxHeight=Math.max(120,h-dyB-66-12)+'px'; }
+  camera.setViewOffset(w,h,-dx/2,(dyB-dyT)/2,w,h);
   camera.updateProjectionMatrix();
 }
-addEventListener('resize',resize); resize();
+let wasMobile=isMobile();
+addEventListener('resize',()=>{ const m=isMobile(); if(m!==wasMobile){ wasMobile=m; applyControls(); if(m){ setMode('home',false); } else { sheet.style.transform=''; sheet.style.height=''; } } else if(m && UI.mode==='map') sheetTo(UI.sheet,false); resize(); });
+applyControls();
+if(isMobile()){ setMode('home',false); sheetTo('peek',false); }
+renderHome();
+resize();
 refreshVis(); renderUI(); onExplode();
 
 const start=fitPos(CAMPUS_T,CAMPUS_R*1.6,new THREE.Vector3(-.7,.95,.55).normalize());
@@ -1426,6 +1858,5 @@ document.getElementById('loading').classList.add('done');
 })();
 
 </script>
-
 </body>
 </html>
