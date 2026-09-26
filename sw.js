@@ -1,5 +1,5 @@
 // Mi Aula EINA: la página y sus librerías quedan guardadas para abrir rápido aunque haya poca cobertura.
-const VERSION = 'miaula-v3';
+const VERSION = 'miaula-v4';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 const LIBS = [
   'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',

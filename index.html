@@ -883,14 +883,14 @@ const buildings = D.buildings.map(def=>{
     L.slabMat=slabM;
     L.add(extrudeGeo(f.shapes,y0,0.3),slabM,1,true);
     const planTex=texFrom(f.tex);
-    const planM=new THREE.MeshLambertMaterial({map:planTex,color:0xffffff});
+    const planM=new THREE.MeshLambertMaterial({map:planTex,color:0xffffff,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
     L.planMat=planM;
     L.add(setUV(flatGeo(f.shapes,y0+0.31),def.rect),planM,1,false);
     const wallM=new THREE.MeshLambertMaterial({color:wallC,side:THREE.DoubleSide});
     if(basement) L.add(wallGeo(f.shapes,[[y0+0.3,y0+FH]]),wallM,1,true);
     else{
       L.add(wallGeo(f.shapes,[[y0+0.3,y0+1.1],[y0+2.95,y0+FH]]),wallM,1,true);
-      L.add(wallGeo(f.shapes,[[y0+1.1,y0+2.95]]),new THREE.MeshLambertMaterial({color:0x9FB9C4,transparent:true,opacity:.28,depthWrite:false,side:THREE.DoubleSide}),.28,false);
+      L.add(wallGeo(f.shapes,[[y0+1.1,y0+2.95]]),(()=>{ const g=new THREE.MeshLambertMaterial({color:0x9FB9C4,transparent:true,opacity:.28,depthWrite:false,side:THREE.DoubleSide}); g.userData.glass=true; return g; })(),.28,false);
     }
     L.line=new THREE.LineSegments(edgeGeo(f.shapes,[y0+0.36,y0+FH]), new THREE.LineBasicMaterial({color:0x0B6E6A,transparent:true,opacity:0}));
     L.line.visible=false; group.add(L.line);
@@ -902,7 +902,7 @@ const buildings = D.buildings.map(def=>{
     const group=new THREE.Group(); b.group.add(group);
     const L=makeLayer(b,group,{k:c.i,isCap:true});
     L.add(extrudeGeo(c.shapes,yT,0.45),new THREE.MeshLambertMaterial({color:trimC}),1,true);
-    const m=new THREE.MeshLambertMaterial({map:cuTex,color:0xffffff}); L.roofMat=m;
+    const m=new THREE.MeshLambertMaterial({map:cuTex,color:0xffffff,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2}); L.roofMat=m;
     L.add(setUV(flatGeo(c.shapes,yT+0.46),def.rect),m,1,false);
     b.capObjs.push(L);
   });
@@ -942,7 +942,13 @@ const clamp01=v=>Math.max(0,Math.min(1,v));
 function setVis(L){
   let v=L.vis;
   if(L.isCap && S.k!=='CU') v*=clamp01(1-S.t*3);
-  L.meshes.forEach(ms=>{ ms.visible=v>.02; ms.castShadow=ms.userData.cast&&v>.6; });
+  L.meshes.forEach(ms=>{
+    const mt=ms.material, detail = mt===L.planMat || mt===L.roofMat || mt.userData.glass;
+    // en capas semitransparentes solo se dibujan los volúmenes: los planos y cristales
+    // superpuestos parpadean al ordenarse de forma distinta en cada fotograma
+    ms.visible = detail ? v>.9 : v>.08;
+    ms.castShadow=ms.userData.cast&&v>.6;
+  });
   L.mats.forEach(({m,base})=>{
     const o=base*v, tr=o<.999;
     if(m.transparent!==tr){ m.transparent=tr; m.needsUpdate=true; }
