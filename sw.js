@@ -1,5 +1,5 @@
 // Eina 3D: la página y sus librerías quedan guardadas para abrir rápido aunque haya poca cobertura.
-const VERSION = 'eina3d-v5';
+const VERSION = 'eina3d-v6';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 const LIBS = [
   'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',
