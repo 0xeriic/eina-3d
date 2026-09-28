@@ -454,6 +454,14 @@ details.groups[open] summary span::after{content:" ▴"}
   .su-foot{padding-bottom:16px}
   .su-entry{display:none}
 }
+
+.su-labs{display:grid;gap:8px}
+.su-lab{display:grid;gap:8px;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:var(--btn)}
+.su-lab.done{border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.su-lab b{font:600 14.5px/1.2 var(--f-disp)}
+.su-lab .su-chip span{min-height:40px;padding:0 13px}
+.su-chip.none span{font-family:var(--f-body);font-size:13.5px;color:var(--ink-2)}
+.su-left{color:#C0392B;font-weight:600}
 /* ================= recorrido en primera persona ================= */
 .fp{position:absolute;inset:0;z-index:50;pointer-events:none;display:flex;flex-direction:column;justify-content:space-between}
 .fp>*{pointer-events:auto}
@@ -1773,6 +1781,7 @@ function resolveGroup(P,cfg,subj,kind){
   const gs=(P.sg[subj]||{})[kind]||[];
   if(!gs.length) return null;
   const per=(cfg.per||{})[subj]||{};
+  if(per[kind]==='-') return null;               // «no voy»
   if(per[kind] && gs.includes(per[kind])) return per[kind];
   if(gs.length===1) return gs[0];
   const c=(cfg.choice||{})[kind];
@@ -1942,36 +1951,47 @@ async function renderSetup(){
   }
   if(s===4){
     const subs=W.cfg.subjects;
-    const kinds=['T','P','L','O'].filter(k=>subs.some(x=>((P.sg[x]||{})[k]||[]).length>1));
+    const name=x=>(P.subjects[x]||{}).n||x;
+    // teoría y problemas: un grupo para todas; prácticas: cada asignatura el suyo
+    const kinds=['T','P','O'].filter(k=>subs.some(x=>((P.sg[x]||{})[k]||[]).length>1));
+    const labSubs=subs.filter(x=>((P.sg[x]||{}).L||[]).length>1).sort((p,q)=>name(p).localeCompare(name(q)));
     const union=k=>[...new Set(subs.flatMap(x=>(P.sg[x]||{})[k]||[]))].sort(numSort);
     const draw=()=>{
       const cfg=W.cfg;
       let html=`<h2 id="setupTitle">¿En qué grupos estás?</h2>`;
-      if(!kinds.length) html+=`<p class="su-lead">Tus asignaturas tienen un único grupo cada una. No hace falta elegir nada.</p>`;
+      if(!kinds.length && !labSubs.length) html+=`<p class="su-lead">Tus asignaturas tienen un único grupo cada una. No hace falta elegir nada.</p>`;
       kinds.forEach(k=>{
-        let opts=union(k);
-        const t=cfg.choice.T;
-        let pref=[];
-        if(k==='P' && t) pref=opts.filter(g=>g.startsWith(t));
-        if(k==='L' && t) pref=opts.filter(g=>g.length<=2 && g[0]===t.slice(-1));
+        const opts=union(k), t=cfg.choice.T;
+        const pref = k==='P' && t ? opts.filter(g=>g.startsWith(t)) : [];
         const rest=pref.length?opts.filter(g=>!pref.includes(g)):opts;
         const chip=g=>`<label class="su-chip grp"><input type="radio" name="k${k}" value="${g}" ${cfg.choice[k]===g?'checked':''}><span>${esc(g)}</span></label>`;
-        html+=`<section class="su-grp"><h3>${KQ[k]}</h3>${pref.length?`<div class="su-chips">${pref.map(chip).join('')}</div><details class="su-more"><summary>Otros grupos</summary><div class="su-chips">${rest.map(chip).join('')}</div></details>`:`<div class="su-chips">${rest.map(chip).join('')}</div>`}</section>`;
+        html+=`<section class="su-grp"><h3>${KQ[k]}</h3>${k==='P'?'<p class="su-note">El mismo para todas tus asignaturas.</p>':''}${pref.length?`<div class="su-chips">${pref.map(chip).join('')}</div><details class="su-more"><summary>Otros grupos</summary><div class="su-chips">${rest.map(chip).join('')}</div></details>`:`<div class="su-chips">${rest.map(chip).join('')}</div>`}</section>`;
       });
-      // asignaturas que quedan sin grupo
+      const labLeft=labSubs.filter(x=>!(cfg.per[x]&&cfg.per[x].L) && !resolveGroup(P,cfg,x,'L')).length;
+      if(labSubs.length){
+        html+=`<section class="su-grp"><h3>¿Y de prácticas?</h3><p class="su-note">Cada asignatura tiene sus propios grupos de prácticas.${labLeft?` <b class="su-left">Faltan ${labLeft}.</b>`:''}</p><div class="su-labs">${labSubs.map(x=>{
+          const gs=P.sg[x].L.slice().sort(numSort), cur=(cfg.per[x]||{}).L==='-'?'-':resolveGroup(P,cfg,x,'L');
+          const chip=(v,l)=>`<label class="su-chip grp${v==='-'?' none':''}"><input type="radio" name="L:${x}" value="${v}" ${cur===v?'checked':''}><span>${esc(l)}</span></label>`;
+          const t=cfg.choice.T||resolveGroup(P,cfg,x,'T')||'';
+          const pref=t?gs.filter(g=>g.length<=2&&g[0]===t.slice(-1)):[], rest=pref.length?gs.filter(g=>!pref.includes(g)):gs;
+          const main=pref.length?pref:rest, open=pref.length&&rest.includes(cur);
+          return `<div class="su-lab${cur?' done':''}"><b>${esc(name(x))}</b><div class="su-chips">${main.map(g=>chip(g,g)).join('')}${chip('-','No voy')}</div>${pref.length?`<details class="su-more"${open?' open':''}><summary>Otros grupos</summary><div class="su-chips">${rest.map(g=>chip(g,g)).join('')}</div></details>`:''}</div>`; }).join('')}</div></section>`;
+      }
+      // excepciones de teoría o problemas en alguna asignatura
       const missing=[];
-      subs.forEach(x=>['T','P','L','O'].forEach(k=>{ const gs=(P.sg[x]||{})[k]||[]; if(gs.length>1 && !resolveGroup(P,cfg,x,k)) missing.push([x,k,gs]); }));
-      html+=`<details class="su-more su-per" ${missing.length&&kinds.every(k=>cfg.choice[k])?'open':''}><summary>Ajustar por asignatura${missing.length?` <em>${missing.length} sin grupo</em>`:''}</summary>
-        <div class="su-table">${subs.map(x=>{ const g=P.sg[x]||{}; const ks=['T','P','L','O'].filter(k=>(g[k]||[]).length>1); if(!ks.length) return '';
-          return `<div class="su-trow"><b>${esc((P.subjects[x]||{}).n||x)}</b>${ks.map(k=>{ const cur=resolveGroup(P,cfg,x,k)||''; return `<label><span>${KNAME[k]}</span><select data-s="${x}" data-k="${k}"><option value="">—</option>${g[k].map(v=>`<option ${v===cur?'selected':''}>${esc(v)}</option>`).join('')}</select></label>`; }).join('')}</div>`; }).join('')}</div></details>`;
-      b.innerHTML=html;
-      nx.disabled = kinds.some(k=>!cfg.choice[k]) && missing.length>0;
+      subs.forEach(x=>['T','P','O'].forEach(k=>{ const gs=(P.sg[x]||{})[k]||[]; if(gs.length>1 && !resolveGroup(P,cfg,x,k)) missing.push([x,k,gs]); }));
+      const rows=subs.map(x=>{ const g=P.sg[x]||{}; const ks=['T','P','O'].filter(k=>(g[k]||[]).length>1); if(!ks.length) return '';
+          return `<div class="su-trow"><b>${esc(name(x))}</b>${ks.map(k=>{ const cur=resolveGroup(P,cfg,x,k)||''; return `<label><span>${KNAME[k]}</span><select data-s="${x}" data-k="${k}"><option value="">—</option>${g[k].map(v=>`<option ${v===cur?'selected':''}>${esc(v)}</option>`).join('')}</select></label>`; }).join('')}</div>`; }).join('');
+      if(rows) html+=`<details class="su-more su-per" ${missing.length&&kinds.every(k=>cfg.choice[k])?'open':''}><summary>Teoría o problemas distintos en alguna asignatura${missing.length?` <em>${missing.length} sin grupo</em>`:''}</summary><div class="su-table">${rows}</div></details>`;
+      const top=b.scrollTop; b.innerHTML=html; b.scrollTop=top;
+      nx.disabled = (kinds.some(k=>!cfg.choice[k]) && missing.length>0) || labLeft>0;
     };
     back();
     const nx=next('Siguiente',()=>{ W.step=5; renderSetup(); });
     b.onchange=e=>{
       const t=e.target;
-      if(t.type==='radio'){ W.cfg.choice[t.name.slice(1)]=t.value; if(t.name==='kT'){ /* al cambiar teoría, recalcula el resto */ } draw(); }
+      if(t.type==='radio' && t.name.startsWith('L:')){ const x=t.name.slice(2); (W.cfg.per[x]||(W.cfg.per[x]={})).L=t.value; draw(); return; }
+      if(t.type==='radio'){ W.cfg.choice[t.name.slice(1)]=t.value; draw(); }
       if(t.tagName==='SELECT'){ const per=W.cfg.per[t.dataset.s]||(W.cfg.per[t.dataset.s]={}); if(t.value) per[t.dataset.k]=t.value; else delete per[t.dataset.k]; draw(); }
     };
     draw();
