@@ -380,6 +380,80 @@ details.groups[open] summary span::after{content:" ▴"}
 }
 
 .sig{margin:0;font:500 10.5px/1 var(--f-mono);letter-spacing:.06em;color:var(--ink-2);opacity:.55;user-select:all}
+
+/* ================= asistente «Configurar mi horario» ================= */
+.setup{position:absolute;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:color-mix(in srgb,var(--bg) 55%,rgba(0,0,0,.45));-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.su-card{width:min(560px,100%);max-height:min(760px,100%);display:flex;flex-direction:column;border-radius:18px;background:var(--panel-solid);border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden}
+.su-head{position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px 12px}
+#setupStep{font:600 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+#setupClose{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--btn);color:var(--ink-2);font-size:16px;line-height:1}
+.su-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--line)}
+.su-bar::after{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--p,0%);background:var(--accent);transition:width .3s}
+.su-body{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:18px 18px 8px;display:grid;gap:12px;align-content:start}
+.su-body h2{margin:0;font:700 24px/1.1 var(--f-disp);text-wrap:balance}
+.su-body h3{margin:6px 0 2px;font:600 12px/1 var(--f-disp);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.su-lead{margin:0;font-size:14.5px;line-height:1.45;color:var(--ink-2)}
+.su-lead b{color:var(--ink)}
+.su-note{margin:0;font-size:12.5px;line-height:1.45;color:var(--ink-2)}
+.su-err{margin:0;font-size:14px;color:#C0392B}
+.su-choices{display:grid;gap:8px}
+.su-choice{display:grid;gap:3px;text-align:left;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--btn);color:var(--ink);cursor:pointer}
+.su-choice b{font:700 17px/1.1 var(--f-disp)}
+.su-choice span{font-size:13px;color:var(--ink-2)}
+.su-choice.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.su-choice.primary span{color:inherit;opacity:.88}
+.su-choice.ghosty{background:transparent}
+.su-search{width:100%;min-height:46px;padding:0 13px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:500 15px var(--f-body)}
+.su-search:focus{outline:2px solid var(--accent);outline-offset:1px}
+.su-list{display:grid;gap:6px}
+.su-row{display:grid;gap:2px;text-align:left;padding:11px 13px;border-radius:12px;border:1px solid var(--line);background:var(--btn);color:var(--ink)}
+.su-row:hover{border-color:var(--accent)}
+.su-row.on{border-color:var(--accent);background:var(--accent-soft)}
+.su-row.loading{opacity:.6}
+.su-row b{font:600 15.5px/1.2 var(--f-disp)}
+.su-row span{font:500 11px/1.2 var(--f-mono);color:var(--ink-2)}
+.su-chips{display:flex;flex-wrap:wrap;gap:7px}
+.su-chip{position:relative;cursor:pointer}
+.su-chip input{position:absolute;opacity:0;width:1px;height:1px}
+.su-chip span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--btn);font:600 15px/1 var(--f-body);color:var(--ink)}
+.su-chip.grp span{font-family:var(--f-mono);min-width:64px;justify-content:center}
+.su-chip input:checked+span{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.su-chip input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.su-sub{display:grid;gap:4px}
+.su-check{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;min-height:44px;padding:6px 10px;border-radius:10px;border:1px solid var(--line);background:var(--btn);cursor:pointer}
+.su-check input{width:20px;height:20px;accent-color:var(--accent)}
+.su-check span{font-size:14.5px}
+.su-check small{font:500 11px var(--f-mono);color:var(--ink-2)}
+.su-more summary{cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);padding:6px 0}
+.su-more summary em{font-style:normal;margin-left:6px;padding:2px 7px;border-radius:999px;background:#F2C14E;color:#2A2000;font-size:11.5px}
+.su-grp{display:grid;gap:8px}
+.su-table{display:grid;gap:8px;margin-top:6px}
+.su-trow{display:grid;gap:6px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--btn)}
+.su-trow b{font:600 14.5px/1.2 var(--f-disp)}
+.su-trow label{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;color:var(--ink-2)}
+.su-trow select{min-height:36px;min-width:90px;border-radius:8px;border:1px solid var(--line);background:var(--panel-solid);color:var(--ink);font:500 14px var(--f-mono);padding:0 8px}
+.su-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.su-sum div{display:grid;gap:3px;padding:12px;border-radius:12px;background:var(--accent-soft);text-align:center}
+.su-sum b{font:700 28px/1 var(--f-mono);color:var(--accent)}
+.su-sum span{font-size:12px;color:var(--ink-2)}
+.su-dl{justify-self:start;min-height:42px;padding:0 14px;border-radius:10px;border:1px solid var(--line);background:var(--btn);color:var(--ink);font:600 14px var(--f-body)}
+.su-foot{display:flex;gap:8px;padding:12px 18px 16px;border-top:1px solid var(--line)}
+.su-foot:empty{display:none}
+.su-foot button{min-height:50px;border-radius:12px;font:700 15px/1 var(--f-disp);letter-spacing:.05em;text-transform:uppercase}
+.su-back{flex:1;border:1px solid var(--line);background:var(--btn);color:var(--ink)}
+.su-next{flex:2;border:0;background:var(--accent);color:var(--accent-ink)}
+.su-next:disabled{opacity:.4}
+.su-entry{display:grid;gap:6px}
+.su-entry-main{display:grid;gap:2px;text-align:left;padding:11px 13px;border-radius:10px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--ink)}
+.su-entry-main b{font:600 15px/1.1 var(--f-disp)}
+.su-entry-main small{font-size:12px;color:var(--ink-2)}
+.su-entry .ghost{justify-content:center;min-height:36px}
+@media (max-width:720px){
+  .setup{padding:0;place-items:end stretch}
+  .su-card{width:100%;max-height:100%;height:100%;border-radius:0;border:0}
+  .su-foot{padding-bottom:16px}
+  .su-entry{display:none}
+}
 </style>
 
 <div id="app">
@@ -402,13 +476,15 @@ details.groups[open] summary span::after{content:" ▴"}
       <div id="hqres"></div>
     </div>
     <nav class="mh-links" aria-label="Más opciones">
+      <button type="button" data-act="setup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h10M4 12h16M4 18h7"/><circle cx="17" cy="6" r="2.2"/><circle cx="14" cy="18" r="2.2"/></svg>Configurar mi horario</button>
       <button type="button" data-act="week"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4m8-4v4"/></svg>Mi semana y grupos</button>
       <label for="ics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 15V4m0 0-4 4m4-4 4 4M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg>Subir mi horario (.ics)</label>
+      <button type="button" data-act="ics-dl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg>Descargar mi horario (.ics)</button>
       <button type="button" data-act="campus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 20h18M5 20V9l7-4 7 4v11M9 20v-5h6v5"/></svg>Ver el campus en 3D</button>
       <button type="button" id="hmInstall" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M12 7v7m0 0-3-3m3 3 3-3"/></svg>Instalar en el móvil</button>
     </nav>
     <p class="mh-foot">Tu horario se lee en este móvil y no se envía a ningún sitio. Aulas y planos: visor IDEUZ (Universidad de Zaragoza). Comprueba siempre el horario oficial.</p>
-    <p class="sig" translate="no">dGlnZXIsIHRpZ2Vy</p>
+    <p class="sig" translate="no">dHlnZXIsIHR5Z2Vy</p>
   </section>
 
   <div class="mtop" id="mtop"><button type="button" id="mBack" aria-label="Volver al inicio"><span aria-hidden="true">‹</span>Inicio</button></div>
@@ -438,6 +514,10 @@ details.groups[open] summary span::after{content:" ▴"}
         <small>Pulsa o arrastra el archivo aquí. Se lee en tu navegador y no se envía a ningún sitio.</small>
         <input type="file" id="ics" accept=".ics,text/calendar">
       </label>
+      <div class="su-entry">
+        <button type="button" class="su-entry-main" data-act="setup"><b>Configurar mi horario</b><small>Grado, curso, asignaturas y grupos. Sin descargar nada.</small></button>
+        <button type="button" class="ghost" data-act="ics-dl">Descargar mi horario (.ics)</button>
+      </div>
       <details class="howto">
         <summary>¿De dónde saco el .ics?</summary>
         <ol>
@@ -486,7 +566,7 @@ details.groups[open] summary span::after{content:" ▴"}
       </div>
 
       <p class="priv">Aulas y planos: visor IDEUZ (Campus FiDigital, Universidad de Zaragoza). Horarios: Consulta pública de horarios de Unizar. Comprueba siempre el horario oficial: las aulas pueden cambiar.</p>
-      <p class="sig" translate="no">dGlnZXIsIHRpZ2Vy</p>
+      <p class="sig" translate="no">dHlnZXIsIHR5Z2Vy</p>
     </div>
   </aside>
 
@@ -516,6 +596,14 @@ details.groups[open] summary span::after{content:" ▴"}
     </svg>
   </div>
   <div id="toast" role="status" hidden></div>
+
+  <div class="setup" id="setup" hidden role="dialog" aria-modal="true" aria-labelledby="setupTitle">
+    <div class="su-card">
+      <header class="su-head"><span id="setupStep"></span><button type="button" id="setupClose" aria-label="Cerrar">✕</button><div class="su-bar" id="setupBar"></div></header>
+      <div class="su-body" id="setupBody"></div>
+      <footer class="su-foot" id="setupFoot"></footer>
+    </div>
+  </div>
 </div>
 
 <script type="application/json" id="circ-data">{"stairs":[{"code":"1065.00.H10","b":"tq","fi":1,"c":"A","x":-187.17,"z":-40.3,"w":1.61,"h":1.82,"n":"Ascensor 10 escalera emergencia bloque 4"},{"code":"1065.00.H30","b":"tq","fi":1,"c":"M","x":-187.13,"z":-32.64,"w":1.61,"h":4.34,"n":"Escalera emergencia bloque 4"},{"code":"1065.00.H40","b":"tq","fi":1,"c":"E","x":-154.24,"z":-32.57,"w":1.61,"h":4.54,"n":"Escalera bloque 4"},{"code":"1065.00.H80","b":"tq","fi":1,"c":"E","x":-82.82,"z":-31.93,"w":1.61,"h":4.54,"n":"Escalera bloque 5"},{"code":"1065.00.H90","b":"tq","fi":1,"c":"A","x":-49.68,"z":-39.22,"w":1.61,"h":1.82,"n":"Ascensor 12 junto escalera emergencia bloque 5"},{"code":"1065.00.J20","b":"tq","fi":1,"c":"M","x":-49.94,"z":-31.56,"w":1.61,"h":4.34,"n":"Escalera emergencia bloque 5"},{"code":"1065.00.J70","b":"tq","fi":1,"c":"A","x":-131.41,"z":-23.94,"w":1.71,"h":2.32,"n":"Ascensor 5 trasero lado izquierdo"},{"code":"1065.00.J80","b":"tq","fi":1,"c":"A","x":-129.59,"z":-24.0,"w":1.71,"h":2.32,"n":"Ascensor 6 trasero lado izquierdo"},{"code":"1065.00.J90","b":"tq","fi":1,"c":"E","x":-130.52,"z":-13.22,"w":3.43,"h":4.94,"n":"Escalera acceso desde pasillo izdo"},{"code":"1065.00.K10","b":"tq","fi":1,"c":"A","x":-107.6,"z":-23.75,"w":1.71,"h":2.32,"n":"Ascensor 7 trasero lado derecho"},{"code":"1065.00.K20","b":"tq","fi":1,"c":"A","x":-105.69,"z":-23.72,"w":1.71,"h":2.32,"n":"Ascensor 8 trasero lado derecho"},{"code":"1065.00.K30","b":"tq","fi":1,"c":"E","x":-106.81,"z":-13.04,"w":3.53,"h":4.94,"n":"Escalera acceso desde pasillo dcho"},{"code":"1065.00.K90","b":"tq","fi":1,"c":"A","x":-187.48,"z":-0.36,"w":1.61,"h":1.82,"n":"Ascensor 9 escalera emergencia bloque 2"},{"code":"1065.00.L20","b":"tq","fi":1,"c":"M","x":-187.43,"z":7.31,"w":1.61,"h":4.34,"n":"Escalera emergencia bloque 2"},{"code":"1065.00.L30","b":"tq","fi":1,"c":"E","x":-154.33,"z":-8.26,"w":1.61,"h":4.54,"n":"Escalera bloque 2"},{"code":"1065.00.L40","b":"tq","fi":1,"c":"E","x":-83.11,"z":-7.72,"w":1.61,"h":4.54,"n":"Escalera bloque 3"},{"code":"1065.00.L50","b":"tq","fi":1,"c":"A","x":-50.09,"z":0.82,"w":1.61,"h":1.82,"n":"Ascensor 11 junto escalera emergencia bloque 3"},{"code":"1065.00.L70","b":"tq","fi":1,"c":"M","x":-50.25,"z":8.49,"w":1.61,"h":4.34,"n":"Escalera emergencia bloque 3"},{"code":"1065.00.L80","b":"tq","fi":1,"c":"E","x":-126.62,"z":18.33,"w":4.44,"h":3.43,"n":"Escalera cafeteria izquierda"},{"code":"1065.00.M20","b":"tq","fi":1,"c":"E","x":-111.29,"z":18.44,"w":4.44,"h":3.53,"n":"Escalera cafeteria derecha"},{"code":"1065.00.M30","b":"tq","fi":1,"c":"E","x":-175.47,"z":33.99,"w":1.61,"h":3.13,"n":"Escalera interior cb1"},{"code":"1065.00.M40","b":"tq","fi":1,"c":"E","x":-157.02,"z":39.61,"w":5.45,"h":2.22,"n":"Escalera 1 bloque 1"},{"code":"1065.00.M50","b":"tq","fi":1,"c":"E","x":-136.34,"z":39.83,"w":5.45,"h":2.22,"n":"Escalera 2 bloque 1"},{"code":"1065.00.M60","b":"tq","fi":1,"c":"A","x":-135.29,"z":32.69,"w":1.61,"h":2.62,"n":"Ascensor 1 bloque 1"},{"code":"1065.00.M70","b":"tq","fi":1,"c":"A","x":-133.47,"z":32.92,"w":1.61,"h":2.12,"n":"Ascensor 2 bloque 1"},{"code":"1065.00.M80","b":"tq","fi":1,"c":"E","x":-135.2,"z":28.25,"w":1.61,"h":2.72,"n":"Escalera izquierda acceso sótano"},{"code":"1065.00.M90","b":"tq","fi":1,"c":"E","x":-102.92,"z":28.5,"w":1.61,"h":2.72,"n":"Escalera derecha acceso sótano"},{"code":"1065.00.N10","b":"tq","fi":1,"c":"A","x":-104.73,"z":33.21,"w":1.61,"h":2.12,"n":"Ascensor 3 bloque 1"},{"code":"1065.00.N20","b":"tq","fi":1,"c":"A","x":-102.91,"z":32.94,"w":1.61,"h":2.62,"n":"Ascensor 4 bloque 1"},{"code":"1065.00.N30","b":"tq","fi":1,"c":"E","x":-101.94,"z":40.12,"w":5.45,"h":2.22,"n":"Escalera 3 bloque 1"},{"code":"1065.00.N40","b":"tq","fi":1,"c":"E","x":-81.26,"z":40.24,"w":5.45,"h":2.22,"n":"Escalera 4 bloque 1"},{"code":"1065.00.N50","b":"tq","fi":1,"c":"E","x":-62.29,"z":34.88,"w":1.61,"h":3.13,"n":"Escalera dirección"},{"code":"1065.01.096","b":"tq","fi":2,"c":"E","x":-123.5,"z":18.5,"w":1.82,"h":3.33,"n":"Escalera izda cafetería"},{"code":"1065.01.097","b":"tq","fi":2,"c":"E","x":-114.42,"z":18.48,"w":1.82,"h":3.33,"n":"Escalera dcha cafetería"},{"code":"1065.01.461","b":"tq","fi":2,"c":"E","x":-106.81,"z":-13.04,"w":3.53,"h":4.94,"n":"Escalera posterior dcha"},{"code":"1065.01.469","b":"tq","fi":2,"c":"E","x":-130.52,"z":-13.22,"w":3.53,"h":4.94,"n":"Escalera posterior izda"},{"code":"1065.01.G10","b":"tq","fi":2,"c":"A","x":-186.66,"z":-40.5,"w":1.61,"h":1.82,"n":"Ascensor 10 junto escalera emergencia bloque 4"},{"code":"1065.01.G30","b":"tq","fi":2,"c":"M","x":-185.71,"z":-33.01,"w":3.43,"h":4.64,"n":"Escalera emergencia bloque 4"},{"code":"1065.01.G40","b":"tq","fi":2,"c":"E","x":-154.44,"z":-32.78,"w":3.23,"h":4.64,"n":"Escalera bloque 4"},{"code":"1065.01.G50","b":"tq","fi":2,"c":"E","x":-82.61,"z":-32.23,"w":3.23,"h":4.64,"n":"Escalera bloque 5"},{"code":"1065.01.G60","b":"tq","fi":2,"c":"A","x":-50.18,"z":-39.44,"w":1.61,"h":1.82,"n":"Ascensor 12 junto escalera emergencia bloque 5"},{"code":"1065.01.G80","b":"tq","fi":2,"c":"M","x":-51.34,"z":-31.89,"w":3.43,"h":4.64,"n":"Escalera emergencia bloque 5"},{"code":"1065.01.G90","b":"tq","fi":2,"c":"A","x":-131.41,"z":-23.94,"w":1.71,"h":2.32,"n":"Ascensor nº 5"},{"code":"1065.01.H10","b":"tq","fi":2,"c":"A","x":-129.59,"z":-24.0,"w":1.71,"h":2.32,"n":"Ascensor nº 6"},{"code":"1065.01.H20","b":"tq","fi":2,"c":"A","x":-107.6,"z":-23.75,"w":1.71,"h":2.32,"n":"Ascensor nº 7"},{"code":"1065.01.H30","b":"tq","fi":2,"c":"A","x":-105.69,"z":-23.72,"w":1.71,"h":2.32,"n":"Ascensor nº 8"},{"code":"1065.01.H40","b":"tq","fi":2,"c":"A","x":-186.97,"z":-0.55,"w":1.61,"h":1.82,"n":"Ascensor 9 junto escalera emergencia bloque 2"},{"code":"1065.01.H60","b":"tq","fi":2,"c":"M","x":-186.02,"z":7.04,"w":3.43,"h":4.64,"n":"Escalera emergencia bloque 2"},{"code":"1065.01.H70","b":"tq","fi":2,"c":"E","x":-155.43,"z":-8.69,"w":1.61,"h":4.34,"n":"Escalera bloque 2"},{"code":"1065.01.H80","b":"tq","fi":2,"c":"E","x":-82.0,"z":-8.0,"w":1.61,"h":4.34,"n":"Escalera bloque 3"},{"code":"1065.01.H90","b":"tq","fi":2,"c":"A","x":-50.59,"z":0.51,"w":1.61,"h":1.82,"n":"Ascensor 11 escalera emergencia bloque 3"},{"code":"1065.01.J20","b":"tq","fi":2,"c":"M","x":-51.65,"z":8.05,"w":3.43,"h":4.64,"n":"Escalera emergencia bloque 3"},{"code":"1065.01.J30","b":"tq","fi":2,"c":"E","x":-174.54,"z":32.9,"w":3.43,"h":4.54,"n":"Escalera bloque cb1"},{"code":"1065.01.J40","b":"tq","fi":2,"c":"A","x":-135.29,"z":32.69,"w":1.61,"h":2.62,"n":"Ascensor 1 bloque 1"},{"code":"1065.01.J50","b":"tq","fi":2,"c":"A","x":-133.47,"z":32.92,"w":1.61,"h":2.12,"n":"Ascensor 2 bloque 1"},{"code":"1065.01.J60","b":"tq","fi":2,"c":"A","x":-104.73,"z":33.21,"w":1.61,"h":2.12,"n":"Ascensor 3 bloque 1"},{"code":"1065.01.J70","b":"tq","fi":2,"c":"A","x":-102.91,"z":32.94,"w":1.61,"h":2.62,"n":"Ascensor 4 bloque 1"},{"code":"1065.01.J80","b":"tq","fi":2,"c":"E","x":-63.27,"z":33.85,"w":3.43,"h":4.54,"n":"Escalera bloque dirección"},{"code":"1065.01.J90","b":"tq","fi":2,"c":"E","x":-157.14,"z":40.72,"w":5.45,"h":4.34,"n":"Escalera 1 bloque 1"},{"code":"1065.01.K10","b":"tq","fi":2,"c":"E","x":-136.46,"z":40.93,"w":5.35,"h":4.34,"n":"Escalera 2 bloque 1"},{"code":"1065.01.K20","b":"tq","fi":2,"c":"E","x":-101.86,"z":41.23,"w":5.45,"h":4.34,"n":"Escalera 3 bloque 1"},{"code":"1065.01.K30","b":"tq","fi":2,"c":"E","x":-80.78,"z":41.36,"w":5.35,"h":4.34,"n":"Escalera 4 bloque 1"},{"code":"1065.02.210","b":"tq","fi":3,"c":"E","x":-130.62,"z":-13.23,"w":3.53,"h":4.94,"n":"Escalera posterior izquierda"},{"code":"1065.02.730","b":"tq","fi":3,"c":"E","x":-106.81,"z":-13.04,"w":3.53,"h":4.94,"n":"Escalera posterior dcha"},{"code":"1065.02.E00","b":"tq","fi":3,"c":"A","x":-186.76,"z":-40.5,"w":1.61,"h":1.82,"n":"Ascensor 10 junto escalera emergencia bloque 4"},{"code":"1065.02.E20","b":"tq","fi":3,"c":"M","x":-185.71,"z":-33.01,"w":3.43,"h":4.64,"n":"Escalera emergencia bloque 4"},{"code":"1065.02.E30","b":"tq","fi":3,"c":"E","x":-155.36,"z":-41.78,"w":1.71,"h":4.64,"n":"Escalera izda bloque 4"},{"code":"1065.02.E40","b":"tq","fi":3,"c":"E","x":-150.22,"z":-41.67,"w":1.71,"h":4.64,"n":"Escalera dcha bloque 4"},{"code":"1065.02.E50","b":"tq","fi":3,"c":"M","x":-82.61,"z":-32.12,"w":3.23,"h":4.54,"n":"Emergencia bloque 2"},{"code":"1065.02.E60","b":"tq","fi":3,"c":"A","x":-50.28,"z":-39.44,"w":1.61,"h":1.82,"n":"Ascensor 12 junto escalera emergencia bloque 5"},{"code":"1065.02.E80","b":"tq","fi":3,"c":"M","x":-51.35,"z":-31.79,"w":3.43,"h":4.94,"n":"Escalera emergencia bloque 5"},{"code":"1065.02.F00","b":"tq","fi":3,"c":"A","x":-129.59,"z":-24.0,"w":1.71,"h":2.32,"n":"Ascensor nº 6"},{"code":"1065.02.F10","b":"tq","fi":3,"c":"A","x":-107.7,"z":-23.76,"w":1.71,"h":2.32,"n":"Ascensor nº 7"},{"code":"1065.02.F20","b":"tq","fi":3,"c":"A","x":-105.79,"z":-23.72,"w":1.71,"h":2.32,"n":"Ascensor nº 8"},{"code":"1065.02.F30","b":"tq","fi":3,"c":"A","x":-187.07,"z":-0.55,"w":1.61,"h":1.82,"n":"Ascensor 9 junto escalera emergencia bloque 2"},{"code":"1065.02.F60","b":"tq","fi":3,"c":"E","x":-150.8,"z":6.74,"w":1.61,"h":4.34,"n":"Escalera acceso 3ª planta bloque 2"},{"code":"1065.02.F80","b":"tq","fi":3,"c":"A","x":-50.59,"z":0.51,"w":1.61,"h":1.82,"n":"Ascensor 11 junto escalera emergencia bloque 3"},{"code":"1065.02.G00","b":"tq","fi":3,"c":"M","x":-51.76,"z":8.25,"w":3.43,"h":4.94,"n":"Escalera emergencia bloque 3"},{"code":"1065.02.G10","b":"tq","fi":3,"c":"A","x":-135.29,"z":32.69,"w":1.61,"h":2.62,"n":"Ascensor 1 bloque 1"},{"code":"1065.02.G20","b":"tq","fi":3,"c":"A","x":-133.47,"z":32.92,"w":1.61,"h":2.12,"n":"Ascensor 2 bloque 1"},{"code":"1065.02.G30","b":"tq","fi":3,"c":"A","x":-104.73,"z":33.21,"w":1.61,"h":2.12,"n":"Ascensor 3 bloque 1"},{"code":"1065.02.G40","b":"tq","fi":3,"c":"A","x":-102.91,"z":32.94,"w":1.61,"h":2.62,"n":"Ascensor 4 bloque 1"},{"code":"1065.02.G50","b":"tq","fi":3,"c":"E","x":-156.96,"z":41.83,"w":5.04,"h":2.22,"n":"Escalera 1 bloque 1"},{"code":"1065.02.G60","b":"tq","fi":3,"c":"E","x":-136.59,"z":42.04,"w":5.04,"h":2.22,"n":"Escalera 2 bloque 1"},{"code":"1065.02.G70","b":"tq","fi":3,"c":"E","x":-101.78,"z":42.25,"w":5.04,"h":2.22,"n":"Escalera 3 bloque 1"},{"code":"1065.02.G80","b":"tq","fi":3,"c":"E","x":-81.0,"z":42.47,"w":5.04,"h":2.22,"n":"Escalera 4 bloque 1"},{"code":"1065.03.170","b":"tq","fi":4,"c":"E","x":-129.51,"z":-13.4,"w":1.61,"h":4.84,"n":"Escalera izquierda acceso terrazas"},{"code":"1065.03.290","b":"tq","fi":4,"c":"E","x":-107.62,"z":-13.26,"w":1.61,"h":4.84,"n":"Escalera derecha acceso terrazas"},{"code":"1065.03.550","b":"tq","fi":4,"c":"E","x":-82.24,"z":-35.45,"w":3.23,"h":2.62,"n":"Escalera acceso bloque 5"},{"code":"1065.03.900","b":"tq","fi":4,"c":"A","x":-186.66,"z":-40.6,"w":1.61,"h":1.82,"n":"Ascensor 10 junto escalera emergencia bloque 4"},{"code":"1065.03.920","b":"tq","fi":4,"c":"M","x":-184.8,"z":-32.99,"w":1.61,"h":4.64,"n":"Escalera emergencia bloque 4"},{"code":"1065.03.930","b":"tq","fi":4,"c":"E","x":-153.64,"z":-41.94,"w":1.71,"h":4.44,"n":"Escalera izq bloque 4"},{"code":"1065.03.940","b":"tq","fi":4,"c":"E","x":-151.83,"z":-41.91,"w":1.71,"h":4.44,"n":"Escalera drch bloque 4"},{"code":"1065.03.960","b":"tq","fi":4,"c":"A","x":-49.88,"z":-39.43,"w":1.61,"h":1.82,"n":"Ascensor 12 junto escalera emergencia bloque 5"},{"code":"1065.03.980","b":"tq","fi":4,"c":"M","x":-51.85,"z":-31.9,"w":1.61,"h":4.64,"n":"Escalera emergencia bloque 5"},{"code":"1065.03.990","b":"tq","fi":4,"c":"A","x":-186.97,"z":-0.55,"w":1.61,"h":1.82,"n":"Ascensor 9 junto escalera emergencia bloque 2"},{"code":"1065.03.A10","b":"tq","fi":4,"c":"M","x":-185.11,"z":6.95,"w":1.61,"h":4.64,"n":"Escalera emergencia bloque 2"},{"code":"1065.03.A20","b":"tq","fi":4,"c":"E","x":-150.7,"z":6.95,"w":1.61,"h":4.14,"n":"Escalera acceso bloque 2"},{"code":"1065.03.A30","b":"tq","fi":4,"c":"E","x":-86.55,"z":7.45,"w":1.61,"h":4.14,"n":"Escalera acceso bloque 3"},{"code":"1065.03.A40","b":"tq","fi":4,"c":"A","x":-50.19,"z":0.52,"w":1.61,"h":1.82,"n":"Ascensor 11 junto escalera emergencia bloque 3"},{"code":"1065.03.A60","b":"tq","fi":4,"c":"M","x":-52.16,"z":8.04,"w":1.61,"h":4.64,"n":"Escalera emergencia bloque 3"},{"code":"1065.S1.020","b":"tq","fi":0,"c":"E","x":-134.21,"z":29.38,"w":3.33,"h":3.73,"n":"Escalera izquierda acceso sótano"},{"code":"1065.S1.140","b":"tq","fi":0,"c":"E","x":-103.75,"z":29.69,"w":3.33,"h":3.73,"n":"Escalera derecha acceso sótano"},{"code":"1065.S1.300","b":"tq","fi":0,"c":"E","x":-130.63,"z":-17.66,"w":3.63,"h":9.89,"n":"Escalera posterior izquierda (sótano)"},{"code":"1065.S1.320","b":"tq","fi":0,"c":"E","x":-106.68,"z":-14.86,"w":3.53,"h":4.74,"n":"Escalera posterior derecha (sótano)"},{"code":"1065.S1.340","b":"tq","fi":0,"c":"A","x":-131.51,"z":-23.94,"w":1.61,"h":2.12,"n":"Ascensor nº 5"},{"code":"1200.00.025","b":"ab","fi":1,"c":"A","x":-220.05,"z":3.82,"w":2.42,"h":4.24,"n":"Ascensores"},{"code":"1200.00.205","b":"ab","fi":1,"c":"A","x":-221.77,"z":-35.66,"w":2.52,"h":2.02,"n":"Ascensores"},{"code":"1200.00.265","b":"ab","fi":1,"c":"A","x":-266.97,"z":-35.87,"w":2.52,"h":2.02,"n":"Ascensores"},{"code":"1200.01.025","b":"ab","fi":2,"c":"A","x":-220.05,"z":3.82,"w":2.42,"h":4.24,"n":"Ascensores"},{"code":"1200.01.185","b":"ab","fi":2,"c":"A","x":-221.77,"z":-35.66,"w":2.52,"h":2.02,"n":"Ascensor"},{"code":"1200.01.255","b":"ab","fi":2,"c":"A","x":-266.97,"z":-35.87,"w":2.52,"h":2.02,"n":"Ascensores"},{"code":"1200.02.025","b":"ab","fi":3,"c":"A","x":-220.05,"z":3.82,"w":2.42,"h":4.24,"n":"Ascensor"},{"code":"1200.02.185","b":"ab","fi":3,"c":"A","x":-221.77,"z":-35.66,"w":2.52,"h":2.02,"n":"Ascensor"},{"code":"1200.02.255","b":"ab","fi":3,"c":"A","x":-266.97,"z":-35.87,"w":2.52,"h":2.02,"n":"Ascensor"},{"code":"1200.03.015","b":"ab","fi":4,"c":"A","x":-221.77,"z":-35.66,"w":2.52,"h":2.02,"n":"Ascensor"},{"code":"1200.03.085","b":"ab","fi":4,"c":"A","x":-266.97,"z":-35.87,"w":2.52,"h":2.02,"n":"Ascensor"},{"code":"1200.04.015","b":"ab","fi":5,"c":"A","x":-221.77,"z":-35.66,"w":2.52,"h":2.02,"n":"Ascensor"},{"code":"1200.04.075","b":"ab","fi":5,"c":"A","x":-266.97,"z":-35.87,"w":2.52,"h":2.02,"n":"Ascensor"},{"code":"1200.S1.012","b":"ab","fi":0,"c":"A","x":-221.77,"z":-35.66,"w":2.52,"h":2.02,"n":"Ascensor"},{"code":"1200.S1.066","b":"ab","fi":0,"c":"A","x":-266.97,"z":-35.87,"w":2.52,"h":2.02,"n":"Ascensor"},{"code":"1200.00.035","b":"ab","fi":1,"c":"E","x":-206.48,"z":31.24,"w":8.57,"h":4.64,"n":"Escalera"},{"code":"1200.00.115","b":"ab","fi":1,"c":"E","x":-206.27,"z":-19.0,"w":8.47,"h":4.64,"n":"Escalera"},{"code":"1200.00.206","b":"ab","fi":1,"c":"E","x":-220.71,"z":-43.0,"w":4.64,"h":7.26,"n":"Escalera"},{"code":"1200.00.261","b":"ab","fi":1,"c":"E","x":-268.03,"z":-43.16,"w":4.54,"h":7.36,"n":"Escalera"},{"code":"1200.01.015","b":"ab","fi":2,"c":"E","x":-205.68,"z":31.25,"w":6.96,"h":4.64,"n":"Escalera"},{"code":"1200.01.085","b":"ab","fi":2,"c":"E","x":-205.56,"z":-18.99,"w":7.06,"h":4.64,"n":"Escalera"},{"code":"1200.01.182","b":"ab","fi":2,"c":"E","x":-220.81,"z":-43.21,"w":4.64,"h":6.76,"n":"Escalera"},{"code":"1200.01.251","b":"ab","fi":2,"c":"E","x":-267.92,"z":-43.36,"w":4.64,"h":6.96,"n":"Escalera"},{"code":"1200.02.182","b":"ab","fi":3,"c":"E","x":-220.81,"z":-43.21,"w":4.64,"h":6.76,"n":"Escalera"},{"code":"1200.02.252","b":"ab","fi":3,"c":"E","x":-267.92,"z":-43.46,"w":4.64,"h":6.66,"n":"Escalera"},{"code":"1200.03.012","b":"ab","fi":4,"c":"E","x":-220.81,"z":-43.21,"w":4.64,"h":6.76,"n":"Escalera"},{"code":"1200.03.082","b":"ab","fi":4,"c":"E","x":-267.92,"z":-43.46,"w":4.64,"h":6.66,"n":"Escalera"},{"code":"1200.04.012","b":"ab","fi":5,"c":"E","x":-220.81,"z":-43.21,"w":4.64,"h":6.76,"n":"Escalera"},{"code":"1200.04.072","b":"ab","fi":5,"c":"E","x":-267.92,"z":-43.46,"w":4.64,"h":6.66,"n":"Escalera"},{"code":"1200.S1.015","b":"ab","fi":0,"c":"E","x":-220.81,"z":-43.31,"w":4.64,"h":6.66,"n":"Escalera"},{"code":"1200.S1.065","b":"ab","fi":0,"c":"E","x":-268.02,"z":-43.46,"w":4.54,"h":6.76,"n":"Escalera"},{"code":"1201.00.015","b":"bt","fi":1,"c":"E","x":183.36,"z":35.74,"w":5.85,"h":9.58,"n":"Escalera principal aulas"},{"code":"1201.00.095","b":"bt","fi":1,"c":"E","x":149.98,"z":35.26,"w":6.05,"h":2.82,"n":"Escalera interior"},{"code":"1201.00.165","b":"bt","fi":1,"c":"A","x":113.68,"z":38.96,"w":5.75,"h":2.32,"n":"Ascensores"},{"code":"1201.00.295","b":"bt","fi":1,"c":"A","x":125.17,"z":4.99,"w":2.12,"h":2.12,"n":"Ascensor cafetería"},{"code":"1201.00.375","b":"bt","fi":1,"c":"E","x":100.14,"z":-9.64,"w":3.23,"h":4.14,"n":"Escalera interior biblioteca"},{"code":"1201.00.385","b":"bt","fi":1,"c":"E","x":96.8,"z":-8.8,"w":3.53,"h":2.42,"n":"Escalera interior sótano"},{"code":"1201.00.387","b":"bt","fi":1,"c":"A","x":93.77,"z":-8.86,"w":1.82,"h":2.42,"n":"Ascensor biblioteca"},{"code":"1201.00.410","b":"bt","fi":1,"c":"E","x":56.57,"z":-10.02,"w":4.44,"h":8.78,"n":"Escalera oeste biblioteca"},{"code":"1201.00.495","b":"bt","fi":1,"c":"E","x":106.11,"z":-34.95,"w":8.07,"h":3.93,"n":"Escalera oeste dpto ingeniería mecánica"},{"code":"1201.00.715","b":"bt","fi":1,"c":"A","x":179.27,"z":-35.98,"w":2.42,"h":2.32,"n":"Ascensor dpto mecánica"},{"code":"1201.00.845","b":"bt","fi":1,"c":"E","x":185.47,"z":-38.07,"w":2.22,"h":6.66,"n":"Escalera este dpto ingeniería mecánica"},{"code":"1201.01.085","b":"bt","fi":2,"c":"E","x":148.98,"z":34.63,"w":4.24,"h":1.41,"n":"Escalera interior"},{"code":"1201.01.145","b":"bt","fi":2,"c":"A","x":113.68,"z":38.96,"w":5.75,"h":2.32,"n":"Ascensor"},{"code":"1201.01.455","b":"bt","fi":2,"c":"A","x":93.77,"z":-8.86,"w":1.82,"h":2.42,"n":"Ascensor"},{"code":"1201.01.485","b":"bt","fi":2,"c":"M","x":50.87,"z":-12.46,"w":6.76,"h":4.03,"n":"Escalera evacuación"},{"code":"1201.01.635","b":"bt","fi":2,"c":"A","x":179.27,"z":-35.98,"w":2.42,"h":2.32,"n":"Ascensor mecánica"},{"code":"1201.02.245","b":"bt","fi":3,"c":"A","x":179.37,"z":-35.98,"w":2.42,"h":2.32,"n":"Ascensor"},{"code":"1201.02.305","b":"bt","fi":3,"c":"A","x":113.68,"z":38.96,"w":5.75,"h":2.32,"n":"Ascensores"},{"code":"1201.02.735","b":"bt","fi":3,"c":"A","x":93.77,"z":-8.86,"w":1.82,"h":2.42,"n":"Ascensor biblioteca"},{"code":"1201.02.810","b":"bt","fi":3,"c":"M","x":56.62,"z":-12.34,"w":5.65,"h":4.03,"n":"Escalera evacuación biblioteca"},{"code":"1201.03.125","b":"bt","fi":4,"c":"A","x":113.68,"z":38.96,"w":5.75,"h":2.32,"n":"Hueco ascensores"},{"code":"1201.S1.205","b":"bt","fi":0,"c":"E","x":99.52,"z":-8.85,"w":4.44,"h":2.42,"n":"Escalera biblioteca"},{"code":"1201.S1.215","b":"bt","fi":0,"c":"A","x":93.77,"z":-8.86,"w":1.82,"h":2.42,"n":"Ascensor"}],"entr":[{"code":"1065.00.010","b":"tq","kind":"P","x":-134.47,"z":59.54,"dx":-0.041,"dz":-0.999,"n":"Entrada Principal"},{"code":"1065.00.110","b":"tq","kind":"S","x":-185.54,"z":29.57,"dx":1.0,"dz":-0.0,"n":"Hall Entrada Bloque Cb1 (C1-0-42)"},{"code":"1065.00.555","b":"tq","kind":"S","x":-105.69,"z":60.03,"dx":0.012,"dz":-1.0,"n":"Entrada Secundaria"},{"code":"1065.00.620","b":"tq","kind":"S","x":-148.53,"z":-21.25,"dx":-0.981,"dz":0.193,"n":"Pasillo Entrada Bloque 2"},{"code":"1065.00.715","b":"tq","kind":"S","x":-151.7,"z":11.9,"dx":0.009,"dz":-1.0,"n":"Salida Laboratorios Bloque 2"},{"code":"1065.00.P20","b":"tq","kind":"S","x":-117.3,"z":-21.76,"dx":-1.0,"dz":-0.0,"n":"Porche 4 Interior Acceso Trasero"},{"code":"1200.00.010","b":"ab","kind":"P","x":-223.74,"z":34.01,"dx":0.062,"dz":0.998,"n":"Entrada Principal"},{"code":"1200.00.120","b":"ab","kind":"S","x":-206.26,"z":-22.55,"dx":-0.892,"dz":-0.451,"n":"Puerta Entrada Zona Este"},{"code":"1200.00.290","b":"ab","kind":"S","x":-288.79,"z":-32.65,"dx":1.0,"dz":-0.0,"n":"Hall Oeste Bus"},{"code":"1200.00.300","b":"ab","kind":"S","x":-288.79,"z":-29.01,"dx":1.0,"dz":-0.0,"n":"Puerta Entrada Zona Oeste"},{"code":"1201.00.010","b":"bt","kind":"S","x":190.88,"z":41.59,"dx":0.0,"dz":-1.0,"n":"Entrada Sur Aparcamiento"},{"code":"1201.00.170","b":"bt","kind":"P","x":91.43,"z":33.34,"dx":0.01,"dz":-1.0,"n":"Entrada Oeste Plaza"},{"code":"1201.00.380","b":"bt","kind":"S","x":97.27,"z":-13.94,"dx":0.0,"dz":1.0,"n":"Hall Salida Exterior"},{"code":"1201.00.470","b":"bt","kind":"S","x":230.21,"z":60.4,"dx":-0.022,"dz":-1.0,"n":"Salida Exterior S.A."},{"code":"1201.00.490","b":"bt","kind":"S","x":111.95,"z":-30.75,"dx":1.0,"dz":-0.0,"n":"Puerta Suroeste Dpto Ingeniería Mecánica"},{"code":"1201.00.860","b":"bt","kind":"S","x":183.72,"z":-46.72,"dx":0.0,"dz":1.0,"n":"Salida Noreste Dpto Ingeniería Mecánica"},{"code":"1201.00.A20","b":"bt","kind":"S","x":284.14,"z":-13.94,"dx":0.0,"dz":1.0,"n":"Salida Norte Naves"}],"rot":0.02033317757960626}</script>
@@ -1435,7 +1523,7 @@ function loadEvents(evs, source, label){
   H.events=evs.filter(e=>e.s).sort((a,b)=>a.s-b.s); H.source=source; H.label=label;
   const saved=source==='file'?store.get('miaula.groups'):null;
   const gs=allGroups();
-  if(source==='sample') H.groups=new Set(gs.map(g=>g.k));
+  if(source==='sample'||source==='config') H.groups=new Set(gs.map(g=>g.k));
   else if(saved){ const set=new Set(JSON.parse(saved)); H.groups=new Set(gs.filter(g=>set.has(g.k)).map(g=>g.k)); if(!H.groups.size && !needsChoice()) H.groups=new Set(gs.map(g=>g.k)); }
   else H.groups = needsChoice() ? new Set() : new Set(gs.map(g=>g.k));
   H.week=null;
@@ -1471,9 +1559,11 @@ function renderSchedule(){
   const evs=visibleEvents(), now=Date.now();
   // origen
   $('srcline').innerHTML = H.source==='sample'
-    ? `<span class="pill">Ejemplo</span> Ing. Informática 1º · grupos 411 y 4112 (1er semestre 2026-27)`
+    ? `<span class="pill">Ejemplo</span> Ing. Informática 1º · grupos 411 y 4112. <button type="button" class="link" data-act="setup">Configura el tuyo</button>`
+    : H.source==='config'
+    ? `<span class="pill ok">Tu horario</span> ${esc(H.label)} · <button type="button" class="link" data-act="setup">Cambiar</button> · <button type="button" class="link" id="forget">Quitar</button>`
     : `<span class="pill ok">Tu horario</span> ${esc(H.label)} · ${H.events.length} sesiones <button type="button" class="link" id="forget">Quitar</button>`;
-  const fb=$('forget'); if(fb) fb.onclick=()=>{ store.set('miaula.ics',null); store.set('miaula.name',null); store.set('miaula.groups',null); loadEvents(parseSample(SAMPLE),'sample',''); };
+  const fb=$('forget'); if(fb) fb.onclick=()=>{ store.set('miaula.ics',null); store.set('miaula.name',null); store.set('miaula.groups',null); store.set('eina3d.config',null); W.cfg=null; loadEvents(parseSample(SAMPLE),'sample',''); };
   // siguiente clase
   const cur=evs.find(e=>e.e>now);
   const nx=$('next');
@@ -1537,7 +1627,7 @@ async function readFile(f){
   const text=await f.text();
   const evs=parseICS(text);
   if(!evs.length){ toast('No he encontrado clases en ese archivo .ics.'); return; }
-  store.set('miaula.ics',text.length<2500000?text:null); store.set('miaula.name',f.name); store.set('miaula.groups',null);
+  store.set('miaula.ics',text.length<2500000?text:null); store.set('miaula.name',f.name); store.set('miaula.groups',null); store.set('eina3d.config',null); W.cfg=null; if(!setupEl.hidden) closeSetup();
   loadEvents(evs,'file',f.name);
   const withRoom=evs.filter(e=>e.room).length;
   toast(`${evs.length} sesiones cargadas${withRoom<evs.length?` · ${evs.length-withRoom} sin aula`:''}.`);
@@ -1571,10 +1661,286 @@ const sheet=$('side');
 
 // arranque del horario
 const SAMPLE=document.getElementById('sample-data').textContent;
+/* ---------- configurar mi horario: grado → cursos → asignaturas → grupos ---------- */
+const KNAME={T:'Teoría',P:'Problemas',L:'Prácticas',O:'Otras actividades',E:'Exámenes'};
+const KQ={T:'¿En qué grupo de teoría estás?',P:'¿Y de problemas?',L:'¿Y de prácticas?',O:'¿Y para el resto de actividades?'};
+function kindOf(block,type){
+  const b=(block+' '+type).toLowerCase();
+  if(/ordinaria|extraordinaria|evaluaci/.test(b)) return 'E';
+  if(/\bcm\b|magistral|teor/.test(b)) return 'T';
+  if(/prob/.test(b)) return 'P';
+  if(/pr[aá]ctic|laborat|\bprac/.test(b)) return 'L';
+  return 'O';
+}
+const numSort=(a,b)=>a.localeCompare(b,undefined,{numeric:true});
+const planCache={};
+async function fetchJSON(url){ const r=await fetch(url,{cache:'no-cache'}); if(!r.ok) throw new Error(r.status); return r.json(); }
+async function loadPlans(){ return planCache.index || (planCache.index = await fetchJSON('data/plans.json')); }
+async function loadPlan(id){
+  if(planCache[id]) return planCache[id];
+  const P=await fetchJSON(`data/p${id}.json`);
+  // índice por asignatura y tipo de sesión
+  P.sg={};
+  P.s.forEach(r=>{ const k=kindOf(P.blocks[r[2]],P.types[r[3]]); const g=P.sg[r[0]]||(P.sg[r[0]]={}); (g[k]||(g[k]=new Set())).add(r[1]); });
+  Object.values(P.sg).forEach(g=>Object.keys(g).forEach(k=>g[k]=[...g[k]].filter(Boolean).sort(numSort)));
+  return planCache[id]=P;
+}
+// hora local de Madrid → instante (con caché por día)
+const offCache={};
+function madridMs(y,m,d,hh,mm){
+  const key=y*10000+m*100+d; let off=offCache[key];
+  if(off===undefined){ off=offCache[key]=tzOffset(Date.UTC(y,m-1,d,12,0)); }
+  return Date.UTC(y,m-1,d,hh,mm)-off*60000;
+}
+// grupo que corresponde a una asignatura y tipo según lo elegido
+function resolveGroup(P,cfg,subj,kind){
+  const gs=(P.sg[subj]||{})[kind]||[];
+  if(!gs.length) return null;
+  const per=(cfg.per||{})[subj]||{};
+  if(per[kind] && gs.includes(per[kind])) return per[kind];
+  if(gs.length===1) return gs[0];
+  const c=(cfg.choice||{})[kind];
+  if(c && gs.includes(c)) return c;
+  if(kind!=='T'){ // problemas/prácticas con el mismo prefijo que el grupo de teoría
+    const t=resolveGroup(P,cfg,subj,'T');
+    if(t && kind==='P'){ const m=gs.filter(g=>g.startsWith(t)); if(m.length===1) return m[0]; }
+  }
+  return null;
+}
+function eventsFromConfig(P,cfg){
+  const subj=new Set(cfg.subjects), out=[];
+  const [y0,m0,d0]=P.d0.split('-').map(Number);
+  const base=Date.UTC(y0,m0-1,d0);
+  const memo={};
+  const want=(s,k)=>{ const key=s+k; if(!(key in memo)) memo[key]=resolveGroup(P,cfg,s,k); return memo[key]; };
+  for(const r of P.s){
+    const [s,g,bi,ti,ri,hs,he,days]=r;
+    if(!subj.has(s)) continue;
+    const k=kindOf(P.blocks[bi],P.types[ti]);
+    if(k==='E'){ const t=want(s,'T'); if(g && t && g!==t) continue; }
+    else if(g){ const w=want(s,k); if(w!==g) continue; }
+    const name=(P.subjects[s]||{}).n||s, aula=P.rooms[ri]||'', type=P.types[ti]||KNAME[k];
+    const room=codeFrom(aula);
+    for(const dd of days){
+      const dt_=new Date(base+dd*86400000);
+      const Y=dt_.getUTCFullYear(), M=dt_.getUTCMonth()+1, D=dt_.getUTCDate();
+      out.push({s:madridMs(Y,M,D,+hs.slice(0,2),+hs.slice(2)), e:madridMs(Y,M,D,+he.slice(0,2),+he.slice(2)), subj:s, name, group:g, type, loc:aula, room, kind:k});
+    }
+  }
+  return out.sort((a,b)=>a.s-b.s);
+}
+function configLabel(P,cfg){
+  const short=P.name.replace(/^Graduado en /,'').replace(/^Máster Universitario en /,'Máster en ');
+  const cs=[...cfg.cursos].sort().map(c=>c+'º').join(', ');
+  const gs=['T','P','L'].map(k=>cfg.choice&&cfg.choice[k]).filter(Boolean).join(' · ');
+  return `${short} · ${cs}${gs?' · '+gs:''}`;
+}
+async function applyConfig(cfg, quiet){
+  const P=await loadPlan(cfg.plan);
+  const evs=eventsFromConfig(P,cfg);
+  loadEvents(evs,'config',configLabel(P,cfg));
+  H.planUpdated=P.updated;
+  if(!quiet) toast(`Horario listo: ${evs.length} sesiones.`);
+  return evs;
+}
+
+/* ---- descargar .ics ---- */
+function icsEscape(t){ return String(t||'').replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/([,;])/g,'\\$1'); }
+function icsFold(line){ const out=[]; let s=line; while(s.length>73){ out.push(s.slice(0,73)); s=' '+s.slice(73); } out.push(s); return out.join('\r\n'); }
+function icsDate(ms){ return new Date(ms).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,''); }
+function buildICS(evs){
+  const now=icsDate(Date.now());
+  const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Eina 3D//Horario EINA//ES','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:Mi horario EINA','X-WR-TIMEZONE:Europe/Madrid'];
+  evs.forEach((e,i)=>{
+    L.push('BEGIN:VEVENT',`UID:${e.subj||'x'}-${e.group||'g'}-${e.s}-${i}@eina3d`,`DTSTAMP:${now}`,`DTSTART:${icsDate(e.s)}`,`DTEND:${icsDate(e.e)}`,
+      icsFold('SUMMARY:'+icsEscape(e.subj?`${e.subj} - ${e.name} Grupo: ${e.group||'-'} - ${e.type}`:e.name)),
+      icsFold('LOCATION:'+icsEscape(e.loc||'')),
+      icsFold('DESCRIPTION:'+icsEscape(`Creado con Eina 3D · ${e.type}${e.group?' · grupo '+e.group:''}`)),'END:VEVENT');
+  });
+  L.push('END:VCALENDAR');
+  return L.join('\r\n')+'\r\n';
+}
+function downloadICS(){
+  const evs=visibleEvents();
+  if(!evs.length){ toast('Primero configura o sube tu horario.'); return; }
+  const blob=new Blob([buildICS(evs)],{type:'text/calendar;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='horario-eina.ics';
+  document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1500);
+  toast('Descargando horario-eina.ics');
+}
+
+/* ---- asistente ---- */
+const W={step:0, P:null, plans:null, cfg:null};
+const setupEl=$('setup');
+function openSetup(step){
+  W.step = step ?? (store.get('eina3d.config') ? 1 : 0);
+  if(!W.cfg){ try{ W.cfg=JSON.parse(store.get('eina3d.config')||'null'); }catch(e){ W.cfg=null; } }
+  if(!W.cfg) W.cfg={plan:null,cursos:[],subjects:[],choice:{},per:{}};
+  setupEl.hidden=false; document.body.classList.add('setup-open');
+  renderSetup();
+}
+function closeSetup(){ setupEl.hidden=true; document.body.classList.remove('setup-open'); store.set('eina3d.welcomed','1'); }
+$('setupClose').addEventListener('click',closeSetup);
+setupEl.addEventListener('click',e=>{ if(e.target===setupEl) closeSetup(); });
+addEventListener('keydown',e=>{ if(e.key==='Escape' && !setupEl.hidden) closeSetup(); });
+
+const STEPS=['Empezar','Grado','Cursos','Asignaturas','Grupos','Listo'];
+async function renderSetup(){
+  const b=$('setupBody'), f=$('setupFoot'), s=W.step;
+  $('setupStep').textContent = s===0 ? '' : `Paso ${s} de 5 · ${STEPS[s]}`;
+  $('setupBar').style.setProperty('--p', `${Math.max(0,s)/5*100}%`);
+  f.innerHTML='';
+  const next=(label,fn,dis)=>{ const x=document.createElement('button'); x.type='button'; x.className='su-next'; x.textContent=label; x.disabled=!!dis; x.onclick=fn; f.appendChild(x); return x; };
+  const back=()=>{ const x=document.createElement('button'); x.type='button'; x.className='su-back'; x.textContent='Atrás'; x.onclick=()=>{ W.step--; renderSetup(); }; f.prepend(x); };
+  if(s===0){
+    b.innerHTML=`<h2 id="setupTitle">¿Cómo quieres cargar tu horario?</h2>
+      <p class="su-lead">Eina 3D te enseña cada día tu próxima clase y te lleva al aula. Solo necesita saber tu horario.</p>
+      <div class="su-choices">
+        <button type="button" class="su-choice primary" data-go="1"><b>Configurarlo aquí</b><span>Elige grado, curso, asignaturas y grupos. Un minuto.</span></button>
+        <label class="su-choice" for="ics"><b>Ya tengo mi .ics</b><span>El que se descarga en la Consulta pública de horarios.</span></label>
+        <button type="button" class="su-choice ghosty" data-go="close"><b>Ver un ejemplo</b><span>Horario de muestra de Informática 1º.</span></button>
+      </div>
+      <p class="su-note">Todo se guarda en este navegador. No se envía a ningún sitio.</p>`;
+    b.querySelectorAll('[data-go]').forEach(x=>x.onclick=()=>{ if(x.dataset.go==='close') closeSetup(); else { W.step=1; renderSetup(); } });
+    b.querySelector('label[for="ics"]').addEventListener('click',()=>setTimeout(closeSetup,300));
+    return;
+  }
+  if(s===1){
+    b.innerHTML=`<h2 id="setupTitle">¿Qué estudias?</h2><input type="search" class="su-search" id="suQ" placeholder="Buscar grado o máster" autocomplete="off"><div class="su-list" id="suPlans"><p class="muted">Cargando grados…</p></div>`;
+    try{ W.plans=(await loadPlans()).plans; }catch(err){ $('suPlans').innerHTML='<p class="su-err">No he podido cargar la lista de grados. Comprueba la conexión y vuelve a intentarlo.</p>'; return; }
+    const grp=p=>/^Graduado/.test(p.name)?0:/^Programa/.test(p.name)?1:/^Máster/.test(p.name)?2:3;
+    const label=p=>p.name.replace(/^Graduado en /,'').replace(/^Máster Universitario en /,'');
+    const kinds=['Grados','Dobles titulaciones','Másteres','Otros'];
+    const draw=()=>{
+      const q=norm($('suQ').value.trim());
+      const list=W.plans.filter(p=>!q||norm(p.name).includes(q)).sort((a,c)=>grp(a)-grp(c)||label(a).localeCompare(label(c)));
+      let html='', last=-1;
+      list.forEach(p=>{ const g=grp(p); if(g!==last){ html+=`<h3>${kinds[g]}</h3>`; last=g; }
+        html+=`<button type="button" class="su-row${W.cfg.plan===p.plan?' on':''}" data-plan="${p.plan}"><b>${esc(label(p))}</b><span>${p.cursos.length} curso${p.cursos.length>1?'s':''} · plan ${p.plan}</span></button>`; });
+      $('suPlans').innerHTML=html||'<p class="muted">Sin resultados.</p>';
+    };
+    $('suQ').oninput=draw; draw();
+    $('suPlans').onclick=async e=>{
+      const t=e.target.closest('[data-plan]'); if(!t) return;
+      const id=+t.dataset.plan;
+      if(W.cfg.plan!==id) W.cfg={plan:id,cursos:[],subjects:[],choice:{},per:{}};
+      t.classList.add('loading');
+      try{ W.P=await loadPlan(id); }catch(err){ toast('No he podido cargar ese grado.'); t.classList.remove('loading'); return; }
+      W.step=2; renderSetup();
+    };
+    return;
+  }
+  if(!W.P && W.cfg.plan) W.P=await loadPlan(W.cfg.plan);
+  const P=W.P;
+  if(s===2){
+    const cursos=Object.keys(P.cursos).map(Number).sort();
+    b.innerHTML=`<h2 id="setupTitle">¿De qué curso o cursos tienes asignaturas?</h2><p class="su-lead">${esc(P.name)}</p>
+      <div class="su-chips">${cursos.map(c=>`<label class="su-chip"><input type="checkbox" value="${c}" ${W.cfg.cursos.includes(c)?'checked':''}><span>${c}º curso</span></label>`).join('')}</div>
+      <p class="su-note">Puedes marcar varios si llevas asignaturas de distintos cursos.</p>`;
+    back();
+    const nx=next('Siguiente',()=>{ const sel=[...b.querySelectorAll('input:checked')].map(i=>+i.value);
+      const prev=new Set(W.cfg.cursos); W.cfg.cursos=sel;
+      // al cambiar de cursos, marca sus asignaturas
+      const subs=new Set(W.cfg.subjects.filter(x=>sel.some(c=>(P.cursos[c]||{subjects:[]}).subjects.includes(x))));
+      sel.filter(c=>!prev.has(c)||!W.cfg.subjects.length).forEach(c=>P.cursos[c].subjects.forEach(x=>subs.add(x)));
+      W.cfg.subjects=[...subs]; W.step=3; renderSetup(); }, !W.cfg.cursos.length);
+    b.onchange=()=>{ nx.disabled=!b.querySelector('input:checked'); };
+    return;
+  }
+  if(s===3){
+    const cursos=Object.keys(P.cursos).map(Number).sort();
+    const mine=cursos.filter(c=>W.cfg.cursos.includes(c)), others=cursos.filter(c=>!W.cfg.cursos.includes(c));
+    const sel=new Set(W.cfg.subjects);
+    const block=c=>`<section class="su-sub"><h3>${c}º curso</h3>${P.cursos[c].subjects.map(x=>`<label class="su-check"><input type="checkbox" value="${x}" ${sel.has(x)?'checked':''}><span>${esc((P.subjects[x]||{}).n||x)}</span><small>${x}</small></label>`).join('')}</section>`;
+    b.innerHTML=`<h2 id="setupTitle">¿Qué asignaturas cursas?</h2><p class="su-lead">Quita las que no tengas este año.</p>
+      ${mine.map(block).join('')}
+      ${others.length?`<details class="su-more"><summary>Añadir asignaturas de otros cursos</summary>${others.map(block).join('')}</details>`:''}`;
+    back();
+    const nx=next('Siguiente',()=>{ W.cfg.subjects=[...new Set([...b.querySelectorAll('input:checked')].map(i=>i.value))]; W.step=4; renderSetup(); }, !sel.size);
+    b.onchange=()=>{ nx.disabled=!b.querySelector('input:checked'); };
+    return;
+  }
+  if(s===4){
+    const subs=W.cfg.subjects;
+    const kinds=['T','P','L','O'].filter(k=>subs.some(x=>((P.sg[x]||{})[k]||[]).length>1));
+    const union=k=>[...new Set(subs.flatMap(x=>(P.sg[x]||{})[k]||[]))].sort(numSort);
+    const draw=()=>{
+      const cfg=W.cfg;
+      let html=`<h2 id="setupTitle">¿En qué grupos estás?</h2>`;
+      if(!kinds.length) html+=`<p class="su-lead">Tus asignaturas tienen un único grupo cada una. No hace falta elegir nada.</p>`;
+      kinds.forEach(k=>{
+        let opts=union(k);
+        const t=cfg.choice.T;
+        let pref=[];
+        if(k==='P' && t) pref=opts.filter(g=>g.startsWith(t));
+        if(k==='L' && t) pref=opts.filter(g=>g.length<=2 && g[0]===t.slice(-1));
+        const rest=pref.length?opts.filter(g=>!pref.includes(g)):opts;
+        const chip=g=>`<label class="su-chip grp"><input type="radio" name="k${k}" value="${g}" ${cfg.choice[k]===g?'checked':''}><span>${esc(g)}</span></label>`;
+        html+=`<section class="su-grp"><h3>${KQ[k]}</h3>${pref.length?`<div class="su-chips">${pref.map(chip).join('')}</div><details class="su-more"><summary>Otros grupos</summary><div class="su-chips">${rest.map(chip).join('')}</div></details>`:`<div class="su-chips">${rest.map(chip).join('')}</div>`}</section>`;
+      });
+      // asignaturas que quedan sin grupo
+      const missing=[];
+      subs.forEach(x=>['T','P','L','O'].forEach(k=>{ const gs=(P.sg[x]||{})[k]||[]; if(gs.length>1 && !resolveGroup(P,cfg,x,k)) missing.push([x,k,gs]); }));
+      html+=`<details class="su-more su-per" ${missing.length&&kinds.every(k=>cfg.choice[k])?'open':''}><summary>Ajustar por asignatura${missing.length?` <em>${missing.length} sin grupo</em>`:''}</summary>
+        <div class="su-table">${subs.map(x=>{ const g=P.sg[x]||{}; const ks=['T','P','L','O'].filter(k=>(g[k]||[]).length>1); if(!ks.length) return '';
+          return `<div class="su-trow"><b>${esc((P.subjects[x]||{}).n||x)}</b>${ks.map(k=>{ const cur=resolveGroup(P,cfg,x,k)||''; return `<label><span>${KNAME[k]}</span><select data-s="${x}" data-k="${k}"><option value="">—</option>${g[k].map(v=>`<option ${v===cur?'selected':''}>${esc(v)}</option>`).join('')}</select></label>`; }).join('')}</div>`; }).join('')}</div></details>`;
+      b.innerHTML=html;
+      nx.disabled = kinds.some(k=>!cfg.choice[k]) && missing.length>0;
+    };
+    back();
+    const nx=next('Siguiente',()=>{ W.step=5; renderSetup(); });
+    b.onchange=e=>{
+      const t=e.target;
+      if(t.type==='radio'){ W.cfg.choice[t.name.slice(1)]=t.value; if(t.name==='kT'){ /* al cambiar teoría, recalcula el resto */ } draw(); }
+      if(t.tagName==='SELECT'){ const per=W.cfg.per[t.dataset.s]||(W.cfg.per[t.dataset.s]={}); if(t.value) per[t.dataset.k]=t.value; else delete per[t.dataset.k]; draw(); }
+    };
+    draw();
+    return;
+  }
+  if(s===5){
+    const evs=eventsFromConfig(P,W.cfg);
+    const now=Date.now();
+    const nxt=evs.find(e=>e.e>now);
+    const weeks=new Set(evs.filter(e=>e.kind!=='E').map(e=>weekStart(e.s))).size||1;
+    const perWeek=Math.round(evs.filter(e=>e.kind!=='E').length/weeks);
+    const exams=evs.filter(e=>e.kind==='E').length;
+    const noRoom=evs.filter(e=>!e.room).length;
+    b.innerHTML=`<h2 id="setupTitle">Tu horario está listo</h2>
+      <div class="su-sum">
+        <div><b>${W.cfg.subjects.length}</b><span>asignaturas</span></div>
+        <div><b>${perWeek}</b><span>clases por semana</span></div>
+        <div><b>${exams}</b><span>exámenes</span></div>
+      </div>
+      ${nxt?`<p class="su-lead">Tu próxima clase: <b>${esc(nxt.name)}</b>, ${cap(fShort.format(nxt.s))} a las ${fTime.format(nxt.s)}.</p>`:''}
+      ${noRoom?`<p class="su-note">${noRoom} sesiones no tienen aula asignada todavía en la web de la Universidad.</p>`:''}
+      <p class="su-note">Se guarda en este navegador y se actualiza solo cuando la Universidad cambia algo. Datos de la Consulta pública de horarios de Unizar${P.updated?`, revisados el ${fDM.format(Date.parse(P.updated))}`:''}.</p>
+      <button type="button" class="su-dl" id="suDl">Descargar también en .ics</button>`;
+    back();
+    next('Guardar y ver mi horario',async()=>{
+      store.set('eina3d.config',JSON.stringify(W.cfg)); store.set('miaula.ics',null); store.set('miaula.name',null);
+      await applyConfig(W.cfg,true); closeSetup();
+      if(window.__mobileReady && isMobile()) setMode('home',false);
+      toast('Horario guardado en este navegador.');
+    });
+    $('suDl').onclick=()=>{ const blob=new Blob([buildICS(evs)],{type:'text/calendar;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='horario-eina.ics'; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},1500); };
+  }
+}
+// botones repartidos por la página
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-act="setup"],[data-act="ics-dl"]'); if(!t) return;
+  e.preventDefault(); e.stopPropagation();
+  if(t.dataset.act==='setup') openSetup(); else downloadICS();
+},true);
+
 {
+  let cfg=null; try{ cfg=JSON.parse(store.get('eina3d.config')||'null'); }catch(e){}
   const saved=store.get('miaula.ics');
-  if(saved){ const evs=parseICS(saved); if(evs.length) loadEvents(evs,'file',store.get('miaula.name')||'horario.ics'); else loadEvents(parseSample(SAMPLE),'sample',''); }
-  else loadEvents(parseSample(SAMPLE),'sample','');
+  if(cfg && cfg.plan){
+    loadEvents([], 'config', 'Cargando tu horario…');
+    applyConfig(cfg,true).catch(()=>{ toast('No he podido cargar tu horario. Revisa la conexión.'); loadEvents(parseSample(SAMPLE),'sample',''); });
+  }
+  else if(saved){ const evs=parseICS(saved); if(evs.length) loadEvents(evs,'file',store.get('miaula.name')||'horario.ics'); else loadEvents(parseSample(SAMPLE),'sample',''); }
+  else { loadEvents(parseSample(SAMPLE),'sample',''); if(!store.get('eina3d.welcomed')) setTimeout(()=>openSetup(0),700); }
 }
 setInterval(renderSchedule,60000);
 
@@ -1716,7 +2082,8 @@ let homeEvents=[];
 function renderHome(){
   const evs=visibleEvents(), now=Date.now();
   $('hmSrc').innerHTML = H.source==='sample'
-    ? `<span class="pill">Ejemplo</span> Horario de muestra: Informática 1º, grupos 411 y 4112. <label for="ics" class="link">Sube el tuyo</label>`
+    ? `<span class="pill">Ejemplo</span> Horario de muestra: Informática 1º, grupos 411 y 4112. <button type="button" class="link" data-act="setup">Configura el tuyo</button>`
+    : H.source==='config' ? `<span class="pill ok">Tu horario</span> ${esc(H.label)} · <button type="button" class="link" data-act="setup">Cambiar</button>`
     : (H.groups.size ? `<span class="pill ok">Tu horario</span> ${esc(H.label)}` : `<span class="pill warn">Falta un paso</span> Marca tus grupos en <button type="button" class="link" data-act="week">Mi semana y grupos</button>`);
   const cur=evs.find(e=>e.e>now);
   const card=$('hmNext');

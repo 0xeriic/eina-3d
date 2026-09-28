@@ -1,5 +1,5 @@
 // Eina 3D: la página y sus librerías quedan guardadas para abrir rápido aunque haya poca cobertura.
-const VERSION = 'eina3d-v6';
+const VERSION = 'eina3d-v7';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 const LIBS = [
   'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',
@@ -35,6 +35,17 @@ self.addEventListener('fetch', e => {
       } catch (err) {
         return (await caches.match('./index.html')) || (await caches.match('./')) || Response.error();
       }
+    })());
+    return;
+  }
+  // horarios (data/*.json): primero la red, para tener siempre los de anoche; sin red, la copia guardada
+  if (url.origin === location.origin && url.pathname.includes('/data/')) {
+    e.respondWith((async () => {
+      try {
+        const r = await fetch(req, {cache: 'no-cache'});
+        if (r.ok) { const c = await caches.open(VERSION); c.put(req, r.clone()); }
+        return r;
+      } catch (err) { return (await caches.match(req)) || Response.error(); }
     })());
     return;
   }
