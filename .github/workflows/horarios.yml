@@ -1,0 +1,51 @@
+name: Actualizar horarios
+
+on:
+  schedule:
+    - cron: '23 3 * * *'   # cada día a las 03:23 UTC (05:23 en Zaragoza en verano)
+  workflow_dispatch:        # y a mano desde la pestaña Actions
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: horarios
+  cancel-in-progress: false
+
+jobs:
+  horarios:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Descargar horarios de la EINA (Consulta pública de Unizar)
+        run: python scripts/scrape_sia.py --delay 1.5
+
+      - name: Guardar los cambios
+        id: commit
+        run: |
+          git add data
+          if git diff --cached --quiet; then
+            echo "Los horarios no han cambiado."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Horarios actualizados $(date -u +%Y-%m-%d)"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Publicar la web
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          curl -s -o /dev/null -w "Pages build: %{http_code}\n" -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true
