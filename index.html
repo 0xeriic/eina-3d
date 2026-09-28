@@ -1763,7 +1763,11 @@ function buildICS(evs){
 function downloadICS(){
   const evs=visibleEvents();
   if(!evs.length){ toast('Primero configura o sube tu horario.'); return; }
-  const blob=new Blob([buildICS(evs)],{type:'text/calendar;charset=utf-8'});
+  saveICS(buildICS(evs));
+}
+function saveICS(txt){
+  if(window.claude && typeof window.claude.use==='function'){ toast('Aquí no se pueden descargar archivos .ics. Hazlo desde 0xeriic.github.io/eina-3d'); return; }
+  const blob=new Blob([txt],{type:'text/calendar;charset=utf-8'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='horario-eina.ics';
   document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1500);
   toast('Descargando horario-eina.ics');
@@ -1922,7 +1926,7 @@ async function renderSetup(){
       if(window.__mobileReady && isMobile()) setMode('home',false);
       toast('Horario guardado en este navegador.');
     });
-    $('suDl').onclick=()=>{ const blob=new Blob([buildICS(evs)],{type:'text/calendar;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='horario-eina.ics'; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},1500); };
+    $('suDl').onclick=()=>saveICS(buildICS(evs));
   }
 }
 // botones repartidos por la página
