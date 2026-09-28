@@ -502,6 +502,8 @@ body.fp-on #c{cursor:grab}
   #gDots{min-width:0}
   #gDots i{width:auto;flex:1;max-width:22px}
 }
+
+.no-fp .g-fp,.no-fp .fp-go,.no-fp .go.fpb,.no-fp #fp{display:none!important}
 </style>
 
 <div id="app">
@@ -1577,6 +1579,8 @@ function parseSample(text){
 }
 
 // --- estado del horario
+const FP_ENABLED=false;   // recorrido en primera persona: oculto de momento (poner true para activarlo)
+if(!FP_ENABLED) document.documentElement.classList.add('no-fp');
 const FPICO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2"/><path d="M10 21l1.2-6.5L9 12.5V9.5l3-1.5 3 2 2 3M11.2 14.5 14 17v4M9 9.5l-2.5 3"/></svg>';
 const H={events:[],source:'sample',label:'',groups:new Set(),week:null};
 const gkey=e=>`${e.subj}|${e.group}`;
@@ -2724,7 +2728,7 @@ const ICONS={
 const ico=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]||ICONS.straight}</svg>`;
 
 function startFP(code,title){
-  if(FPV.on) return;
+  if(!FP_ENABLED || FPV.on) return;
   let route=null;
   try{ route=navRoute(code); }catch(err){ console.error(err); }
   if(!route){ toast('Todavía no puedo hacer el recorrido hasta esta sala.'); return; }
